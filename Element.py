@@ -70,15 +70,23 @@ class Element:
 		# print menu title
 		if self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
+			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
+			if kind:
+				kind = 'dishes'
+			else:
+				kind = 'group'
 			
 		elif self.kind == 'dishes':
 			print('Add a new dish to \''+self.name+'\' dishes group :')
+			kind = 'dish'
 			
 		elif self.kind == 'dish':
 			print('Add a new variant to \''+self.name+'\' dish :')
+			kind = 'variant'
 			
 		elif self.kind == 'variant':
 			print('Add a new additional ingredient to \''+self.name+'\' variant :')
+			kind = 'ingredient'
 			
 		
 		
