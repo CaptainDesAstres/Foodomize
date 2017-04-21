@@ -10,7 +10,7 @@ class Element:
 		'''initialize Element'''
 		# name and kind of element
 		self.name = name
-		self.kind = kind
+		self.kind = kind # group, dishes, dish, variant or ingredient
 		
 		# montly coefficient
 		if ( type(coef) == int ):
