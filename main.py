@@ -11,16 +11,15 @@ def main():
 		
 		if(menu in ['exit', 'o', 'out', 'q', 'quit']):
 			break
-		elif(menu in ['help', 'h'])
+		elif(menu in ['help', 'h']):
 			print('''Help:
 
-Press enter to quit Help
-
 In main menu:
-Type:                    For:
+Type:                    To:
 h or help                Get some help
 q or quit                Quit the application
 ''')
+			input('Press enter to quit Help')
 	
 	
 	
