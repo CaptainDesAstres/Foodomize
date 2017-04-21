@@ -90,6 +90,17 @@ class Element:
 			
 		
 		
+		# get a name:
+		while True :
+			name = input('choose a name:').strip().lower().capitalize()
+			if name == '':
+				return
+			elif name == 'Main':
+				print('«Main» is a reserved name. choose anything else!')
+			else:
+				break
+		
+		
 		
 		
 		
