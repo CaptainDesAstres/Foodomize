@@ -59,5 +59,13 @@ class Element:
 	q or quit                Quit the application
 	''')
 				input('Press enter to quit Help')
+			elif[menu in [ 'n', 'new' ] ]:
+				self.add()
+	
+	
+	def add(self):
+		'''Element adding menu'''
+		
+		
 	
 
