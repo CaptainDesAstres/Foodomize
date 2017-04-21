@@ -1,12 +1,13 @@
 #!/usr/bin/python3.4
 # -*-coding:Utf-8 -*
 '''App main scope'''
-
+import os
 
 def main():
 	'''app main function'''
 	
 	while(True):
+		os.system('clear')# clear terminal output
 		menu = input('Menu ? (h for help):').strip()
 		
 		if(menu in ['exit', 'o', 'out', 'q', 'quit']):
