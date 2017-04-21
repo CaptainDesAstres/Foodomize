@@ -65,6 +65,24 @@ class Element:
 	
 	def add(self):
 		'''Element adding menu'''
+		os.system('clear')# clear terminal output
+		
+		# print menu title
+		if self.kind == 'group':
+			print('Add a new group to \''+self.name+'\' group list:')
+			
+		elif self.kind == 'dishes':
+			print('Add a new dish to \''+self.name+'\' dishes group :')
+			
+		elif self.kind == 'dish':
+			print('Add a new variant to \''+self.name+'\' dish :')
+			
+		elif self.kind == 'variant':
+			print('Add a new additional ingredient to \''+self.name+'\' variant :')
+			
+		
+		
+		
 		
 		
 	
