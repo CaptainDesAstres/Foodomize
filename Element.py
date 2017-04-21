@@ -8,10 +8,11 @@ class Element:
 	
 	def __init__(self, name='Main', coef=1, kind='group'):
 		'''initialize Element'''
+		# name and kind of element
 		self.name = name
 		self.kind = kind
 		
-		
+		# montly coefficient
 		if ( type(coef) == int ):
 			self.coef = [coef]*12
 		else:
@@ -23,7 +24,9 @@ class Element:
 				self.coef = []
 				while ( len(coef) != 0 ):
 					self.coef.extend( [ coef.pop(0) ] * l )
-			
+		
+		# array of sub element
+		self.sub = []
 	
 	
 	
