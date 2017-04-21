@@ -49,8 +49,12 @@ class Element:
 			elif(menu in ['help', 'h']):
 				print('''Help:
 
-	In main menu:
+	In menu:
 	Type:                    To:
+	n on new                 in a group, create a group or a dish group
+	                         in a dish group, create a dish
+	                         in a dish, create a variant
+	                         in a variant, create an additionnal ingredient
 	h or help                Get some help
 	q or quit                Quit the application
 	''')
