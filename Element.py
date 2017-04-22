@@ -219,6 +219,6 @@ This maner, it simple to made an element more likely to show up on some time of 
 				name = name[0:29] + '…'
 			
 			# print name
-			print(str(i)+'- ')
+			print(str(i)+'- '+name)
 			i+=1
 
