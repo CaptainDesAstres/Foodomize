@@ -135,6 +135,17 @@ This maner, it simple to made an element more likely to show up on some time of 
 				coef = 1
 				break
 				
+			else:
+				coefs = re.split( '-| |/', coef )
+				
+				if len (coefs) == 1:
+					try:
+						coef = int(coefs[0])
+					except Exception as e:
+						print('Error, you\'ve probably type invalid value')
+						continue
+					break
+					
 		
 		
 		print(coef)
