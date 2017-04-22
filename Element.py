@@ -113,16 +113,16 @@ class Element:
 		
 		xml += '<'+self.kind+' name="'+
 				XML.encode(self.name)+'" coef="'+
-				','.join( map( str, self.coef ) ) +'">'
+				','.join( map( str, self.coef ) ) +'">\n'
 		
-		xml += '<sub>'
+		xml += '<sub>\n'
 		for el in self.sub:
 			xml += el.toxml()
 		
-		xml += '</sub>'
+		xml += '</sub>\n'
 		
 		
-		xml += '</'+self.kind+'>'
+		xml += '</'+self.kind+'>\n'
 		
 		return xml
 	
