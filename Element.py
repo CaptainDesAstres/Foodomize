@@ -1,7 +1,7 @@
 #!/usr/bin/python3.4
 # -*-coding:Utf-8 -*
 '''Element base object'''
-import os
+import os, re
 
 class Element:
 	'''Element base object'''
@@ -106,6 +106,7 @@ class Element:
 			
 			if coef in ['q', 'quit', 'c', 'cancel']:
 				return
+				
 			elif coef in [ 'h', 'help' ] :
 				print('''Coefficient help
 
@@ -116,7 +117,7 @@ The coefficient MUST ABSOLUTELY BE A POSITIVE INTEGER as greater as you want!
 Press enter without typing anything and the coefficint will be 1 for all the year.
 Type one number and it will be used all the year.
 
-Type multiple number separated by a space or a / or a -:
+Type multiple number separated by a space or a / or a - (empty = 0):
 With 2 numbers, each define 6 months.
 3 numbers = 4 months each
 4 numbers = 3 months each
@@ -125,8 +126,16 @@ With 2 numbers, each define 6 months.
 
 This maner, it simple to made an element more likely to show up on some time of the year, like winter/summer dishes,
 ''')
-			input('Press enter to continue:')
+				input('Press enter to continue:')
+				
+			elif coef == '':
+				coef = 1
+				break
+				
 		
+		
+		print(coef)
+		input('enter to continue')
 		
 		
 	
