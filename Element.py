@@ -110,7 +110,12 @@ class Element:
 			return False
 		path += '/foodList'
 		
+		xml = self.toxml()
 		
+		with open(path,'w') as output:
+			output.write(xml)
+		
+		return True
 	
 	
 	
