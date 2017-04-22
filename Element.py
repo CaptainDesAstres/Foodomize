@@ -105,7 +105,7 @@ class Element:
 		
 		# get coefficient
 		while True:
-			coef = input('Specify coefficient (h for help, q to quit):')
+			coef = input('Specify coefficient(s) (h for help, q to quit):')
 			
 			if coef in ['q', 'quit', 'c', 'cancel']:
 				return
@@ -127,7 +127,7 @@ With 2 numbers, each define 6 months.
 6 numpers = 2 months each
 12 numbers = 1 for each month
 
-This maner, it simple to made an element more likely to show up on some time of the year, like winter/summer dishes,
+This maner, it simple to made an element more likely to show up on some time of the year, like winter/summer dishes.
 ''')
 				input('Press enter to continue:')
 				
@@ -168,9 +168,10 @@ This maner, it simple to made an element more likely to show up on some time of 
 				else:
 					print('Error, you must type 1 2 3 4 6 or 12 numbers. ')
 		
-		
-		print(coef)
-		input('enter to continue')
+		self.sub.append( Element(name,
+				coef,
+				kind
+				) )
 		
 		
 	
