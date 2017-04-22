@@ -123,6 +123,8 @@ class Element:
 			name = input('choose a name:').strip().lower().capitalize()
 			if name == '':
 				return
+			elif '|' in name:
+				print('Please, do not use «|» in the name.')
 			elif name == 'Main':
 				print('«Main» is a reserved name. choose anything else!')
 			elif self.freeName(name):
