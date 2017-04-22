@@ -2,6 +2,7 @@
 # -*-coding:Utf-8 -*
 '''Element base object'''
 import os, re
+from math import ceil
 
 class Element:
 	'''Element base object'''
@@ -44,6 +45,10 @@ class Element:
 		while(True):
 			os.system('clear')# clear terminal output
 			
+			maxPage = ceil(len(self.sub) / 15)
+			if (page > maxPage):
+				page = maxPage
+			
 			self.printSubList( page )
 			
 			menu = input('your move ? (h for help):').strip()
@@ -55,7 +60,10 @@ class Element:
 
 	In menu:
 	Type:                    To:
-	n on new                 in a group, create a group or a dish group
+	< or -                   Previous 15 elements of the list
+	> or +                   Next 15 elements of the list
+	empty input              Same thing, back to first page when out of range
+	n or new                 in a group, create a group or a dish group
 	                         in a dish group, create a dish
 	                         in a dish, create a variant
 	                         in a variant, create an additionnal ingredient
@@ -63,6 +71,19 @@ class Element:
 	q or quit                Quit the application
 	''')
 				input('Press enter to quit Help')
+			elif ( menu in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (menu in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( menu == ''):
+					page = 0
+				else:
+					page = maxPage
+				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
 	
