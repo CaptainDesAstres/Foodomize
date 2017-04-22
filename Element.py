@@ -100,7 +100,12 @@ class Element:
 			else:
 				break
 		
-		
+		# get coefficient
+		while True:
+			coef = input('Specify coefficient (h for help, q to quit):')
+			
+			if coef in ['q', 'quit', 'c', 'cancel']:
+				return
 		
 		
 		
