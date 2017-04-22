@@ -71,10 +71,13 @@ class Element:
 		if self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
 			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
+			
 			if kind:
 				kind = 'dishes'
+				print('Add a dishes group:')
 			else:
 				kind = 'group'
+				print('Add a sub group:')
 			
 		elif self.kind == 'dishes':
 			print('Add a new dish to \''+self.name+'\' dishes group :')
