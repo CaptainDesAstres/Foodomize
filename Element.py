@@ -39,11 +39,15 @@ class Element:
 	
 	def menu(self):
 		'''Element/group menu'''
+		page = 0
 		
 		while(True):
 			os.system('clear')# clear terminal output
-			menu = input('Menu ? (h for help):').strip()
-		
+			
+			self.printSubList( page )
+			
+			menu = input('your move ? (h for help):').strip()
+			
 			if(menu in ['exit', 'o', 'out', 'q', 'quit']):
 				break
 			elif(menu in ['help', 'h']):
@@ -59,7 +63,7 @@ class Element:
 	q or quit                Quit the application
 	''')
 				input('Press enter to quit Help')
-			elif[menu in [ 'n', 'new' ] ]:
+			elif(menu in [ 'n', 'new' ] ):
 				self.add()
 	
 	
