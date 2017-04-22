@@ -146,6 +146,27 @@ This maner, it simple to made an element more likely to show up on some time of 
 						continue
 					break
 					
+				elif len(coefs) in [ 2, 3, 4, 6, 12 ]:
+					coef = []
+					noerror = True
+					for c in coefs:
+						
+						if c == '':
+							coef.append(0)
+							
+						else:
+							try:
+								coef.append( int(c) )
+							except Exception as e:
+								print('Error, you\'ve probably type an invalid value')
+								noerror = False
+								break
+					
+					if noerror:
+						break
+					
+				else:
+					print('Error, you must type 1 2 3 4 6 or 12 numbers. ')
 		
 		
 		print(coef)
