@@ -100,8 +100,10 @@ class Element:
 				return
 			elif name == 'Main':
 				print('«Main» is a reserved name. choose anything else!')
-			else:
+			elif self.freeName(name):
 				break
+			else:
+				print('There is already an element name like this!')
 		
 		# get coefficient
 		while True:
