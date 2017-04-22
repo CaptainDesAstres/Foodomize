@@ -107,7 +107,11 @@ class Element:
 	
 	def toxml(self):
 		'''return thi object in xml'''
-		xml = '<'+self.kind+' name="'+
+		xml = ''
+		if(self.name == 'Main'):
+			xml += '<?xml version="1.0" encoding="UTF-8"?>\n'
+		
+		xml += '<'+self.kind+' name="'+
 				XML.encode(self.name)+'" coef="'+
 				','.join( map( str, self.coef ) ) +'">'
 		
