@@ -3,6 +3,7 @@
 '''Element base object'''
 import os, re
 from math import ceil
+form XML import XML
 
 class Element:
 	'''Element base object'''
@@ -100,6 +101,26 @@ class Element:
 		'''save the list in app directory'''
 		path = os.path.realpath(__file__+'/..')+'/foodList'
 		print (path)
+	
+	
+	
+	
+	def toxml(self):
+		'''return thi object in xml'''
+		xml = '<'+self.kind+' name="'+
+				XML.encode(self.name)+'" coef="'+
+				','.join( map( str, self.coef ) ) +'">'
+		
+		xml += '<sub>'
+		for el in self.sub:
+			xml += el.toxml()
+		
+		xml += '</sub>'
+		
+		
+		xml += '</'+self.kind+'>'
+		
+		return xml
 	
 	
 	
