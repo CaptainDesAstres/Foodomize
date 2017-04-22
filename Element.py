@@ -186,4 +186,35 @@ This maner, it simple to made an element more likely to show up on some time of 
 		
 		return True
 	
+	
+	
+	
+	def printSubList(self, page ):
+		''' print part of the sub element list'''
+		# title
+		print('		«'+self.name+'» list:\n')
+		
+		# empty list
+		length = len(self.sub)
+		if length == 0:
+			print('empty list')
+			return
+		
+		# page limits
+		i = page * 15
+		end = i+15
+		if end > length:
+			end = length
+		
+		# print page list
+		while(i < end):
+			name = self.sub[i].name
+			
+			# limit name size
+			if len(name) > 29:
+				name = name[0:29] + '…'
+			
+			# print name
+			print(str(i)+'- ')
+			i+=1
 
