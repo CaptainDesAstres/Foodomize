@@ -3,7 +3,7 @@
 '''Element base object'''
 import os, re
 from math import ceil
-form XML import XML
+from XML import XML
 
 class Element:
 	'''Element base object'''
@@ -111,8 +111,8 @@ class Element:
 		if(self.name == 'Main'):
 			xml += '<?xml version="1.0" encoding="UTF-8"?>\n'
 		
-		xml += '<'+self.kind+' name="'+
-				XML.encode(self.name)+'" coef="'+
+		xml += '<'+self.kind+' name="'+\
+				XML.encode(self.name)+'" coef="'+\
 				','.join( map( str, self.coef ) ) +'">\n'
 		
 		xml += '<sub>\n'
