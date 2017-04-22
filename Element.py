@@ -99,8 +99,18 @@ class Element:
 	
 	def save(self):
 		'''save the list in app directory'''
-		path = os.path.realpath(__file__+'/..')+'/foodList'
-		print (path)
+		path = os.path.realpath(__file__+'/..')
+		# check path permission
+		if os.path.exists(path+'/foodList'):
+			if not os.access(path+'/foodList', os.W_OK):
+				print('Error, acces denied. can\'t save!')
+				return False
+		elif(not os.access( path, os.W_OK ) ):
+			print('Error, acces denied. can\'t save!')
+			return False
+		path += '/foodList'
+		
+		
 	
 	
 	
