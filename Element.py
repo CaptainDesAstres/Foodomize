@@ -172,7 +172,16 @@ This maner, it simple to made an element more likely to show up on some time of 
 				coef,
 				kind
 				) )
+	
+	
+	
+	
+	def freeName(self, name):
+		'''check if a sub element already use the name.'''
+		for el in self.sub:
+			if el.name == name:
+				return False
 		
-		
+		return True
 	
 
