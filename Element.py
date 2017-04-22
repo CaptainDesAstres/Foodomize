@@ -54,8 +54,14 @@ class Element:
 			menu = input('your move ? (h for help):').strip()
 			
 			if(menu in ['exit', 'o', 'out', 'q', 'quit']):
+				self.save()
 				break
+				
 			elif(menu in ['help', 'h']):
+				save = ''
+				if(self.name == 'Main'):
+					save = '(automatically save before)'
+				
 				print('''Help:
 
 	In menu:
@@ -68,9 +74,9 @@ class Element:
 	                         in a dish, create a variant
 	                         in a variant, create an additionnal ingredient
 	h or help                Get some help
-	q or quit                Quit the application
-	''')
-				input('Press enter to quit Help')
+	q or quit                Quit the application'''+save)
+				
+				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
 				if page > 0:
 					page -= 1
@@ -86,6 +92,16 @@ class Element:
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+	
+	
+	
+	
+	def save(self):
+		'''save the list in app directory'''
+		path = os.path.realpath(__file__+'/..')+'/foodList'
+		print (path)
+	
+	
 	
 	
 	def add(self):
