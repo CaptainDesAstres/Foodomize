@@ -62,6 +62,18 @@ class Element:
 			if (page > maxPage):
 				page = maxPage
 			
+			print('			'+self.name+' menu')
+			
+			# print description
+			if self.name != 'Main':
+				if self.description == '':
+					print('No description. type "desc" to add one.\n')
+				else:
+					if len(self.description) < 500:
+						print(self.description+'\n')
+					else:
+						print(self.description[0:500]+'…\n')
+			
 			self.printSubList( page )
 			
 			menu = input('your move ? (h for help):').strip()
@@ -117,6 +129,8 @@ h or help                Get some help'''+quit)
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+			elif (menu == 'desc'):
+				self.editDescription()
 			else:
 				try:
 					menu = int(menu)
@@ -362,4 +376,33 @@ This maner, it simple to made an element more likely to show up on some time of 
 			# print name
 			print(str(i)+'- '+name)
 			i+=1
+	
+	
+	
+	
+	def editDescription(self):
+		'''edit description'''
+		if self.name=='Main':
+			return
+		
+		print('Edit «'+self.name+'» description')
+		
+		# print current description
+		if(self.description == ''):
+			print('Actually no description')
+		else:
+			print('Current description:'+self.description+'\n')
+		
+		# get new description
+		desc = input('Type the new description or nothing to cancel:\n').strip()
+		
+		#apply change
+		if (desc != ''):
+			self.description = desc
+		else:
+			if (input('Erase old description? (y or yes):').strip().lower()
+						in [ 'y', 'yes' ] ) :
+				self.description = ''
+			
+	
 
