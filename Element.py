@@ -103,10 +103,18 @@ class Element:
 	def load(self, xml):
 		'''load list from xml'''
 		# get sub list
-		# get kind
-		# get name
-		# get coef
-		# load sub
+		sub = xml.find('sub')
+		
+		for el in sub:
+			# get kind, name, coef
+			kind = el.tag
+			name = XML.decode( el.get('name') )
+			coef = list(map( int, el.get('coef').split(',') ))
+			
+			# load sub
+			self.sub.append( Element( name, coef, kind ) )
+			self.sub[-1].load(el)
+			
 		
 	
 	
