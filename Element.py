@@ -8,11 +8,23 @@ from XML import XML
 class Element:
 	'''Element base object'''
 	
-	def __init__(self, name='Main', coef=1, kind='group'):
+	def __init__(self,
+					name = 'Main',
+					coef = 1,
+					kind = 'group'
+					):
 		'''initialize Element'''
 		# name and kind of element
 		self.name = name
 		self.kind = kind # group, dishes, dish, variant or ingredient
+		
+		self.description = ''
+		self.recipe = ''
+		self.ingredients = []
+		self.extra = []
+		self.accompaniments = []
+		self.related = []
+		
 		
 		# montly coefficient
 		if ( type(coef) == int ):
