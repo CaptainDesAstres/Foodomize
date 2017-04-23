@@ -58,7 +58,7 @@ class Element:
 		while(True):
 			os.system('clear')# clear terminal output
 			
-			maxPage = ceil(len(self.sub) / 15)
+			maxPage = ceil(len(self.sub) / 15)-1
 			if (page > maxPage):
 				page = maxPage
 			
