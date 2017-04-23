@@ -204,7 +204,12 @@ h or help                Get some help'''+quit)
 		
 		xml += '<'+self.kind+' name="'+\
 				XML.encode(self.name)+'" coef="'+\
-				','.join( map( str, self.coef ) ) +'">\n'
+				','.join( map( str, self.coef ) ) +'" '
+		
+		if self.description != '':
+			xml += 'description="'+XML.encode(self.description) +'" '
+		
+		xml += '>\n'
 		
 		xml += '<sub>\n'
 		for el in self.sub:
