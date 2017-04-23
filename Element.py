@@ -159,6 +159,11 @@ h or help                Get some help'''+quit)
 		# get sub list
 		sub = xml.find('sub')
 		
+		desc = xml.get('description')
+		if desc != None:
+			self.description = XML.decode( desc )
+			
+		
 		for el in sub:
 			# get kind, name, coef
 			kind = el.tag
