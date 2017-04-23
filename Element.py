@@ -61,27 +61,33 @@ class Element:
 					else:
 						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
 							return True
-				else:
+				elif( menu[0].isupper() ):
 					return True
+				else:
+					return False
 				
 			elif(menu in ['help', 'h']):
-				save = ''
+				
 				if(self.name == 'Main'):
-					save = '(automatically save before)'
+					quit = '''
+q or quit                Quit the app (automatically save before)'''
+				else:
+					quit = '''
+q or quit                Quit the menu
+Q or Quit                Quit the app (automatically save before)'''
 				
 				print('''Help:
 
-	In menu:
-	Type:                    To:
-	< or -                   Previous 15 elements of the list
-	> or +                   Next 15 elements of the list
-	empty input              Same thing, back to first page when out of range
-	n or new                 in a group, create a group or a dish group
-	                         in a dish group, create a dish
-	                         in a dish, create a variant
-	                         in a variant, create an additionnal ingredient
-	h or help                Get some help
-	q or quit                Quit the application'''+save)
+In menu:
+Type:                    To:
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+n or new                 in a group, create a group or a dish group
+                         in a dish group, create a dish
+                         in a dish, create a variant
+                         in a variant, create an additionnal ingredient
+h or help                Get some help'''+quit)
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -106,7 +112,10 @@ class Element:
 					continue
 				
 				if menu < len( self.sub ):
-					self.sub[menu].menu()
+					quit = self.sub[menu].menu()
+				
+				if quit:
+					return True
 	
 	
 	
