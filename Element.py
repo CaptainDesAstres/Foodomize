@@ -54,12 +54,15 @@ class Element:
 			
 			menu = input('your move ? (h for help):').strip()
 			
-			if(menu in ['exit', 'o', 'out', 'q', 'quit']):
-				if(self.save()):
-					break
+			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
+				if(self.name == 'Main'):
+					if(self.save()):
+						return True
+					else:
+						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
+							return True
 				else:
-					if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
-						break
+					return True
 				
 			elif(menu in ['help', 'h']):
 				save = ''
