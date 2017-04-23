@@ -139,17 +139,17 @@ h or help                Get some help'''+quit)
 				
 				if menu < len( self.sub ):
 					quit = self.sub[menu].menu()
-				
-				if(quit):
-					if self.name != 'Main':
-						return True
-					else:
-						# save before to quit
-						if(self.save()):
+					
+					if(quit):
+						if self.name != 'Main':
 							return True
 						else:
-							if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
+							# save before to quit
+							if(self.save()):
 								return True
+							else:
+								if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
+									return True
 	
 	
 	
