@@ -394,7 +394,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 			print('Current description:'+self.description+'\n')
 		
 		# get new description
-		desc = input('Type the new description or nothing to cancel:\n').strip()
+		desc = input('Type the new description or nothing to cancel (only 500 usefull characters):\n').strip()
 		
 		#apply change
 		if (desc != ''):
