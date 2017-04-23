@@ -100,6 +100,13 @@ class Element:
 	
 	
 	
+	def load(self, xml):
+		'''load list from xml'''
+		return
+	
+	
+	
+	
 	def save(self):
 		'''save the list in app directory'''
 		path = os.path.realpath(__file__+'/..')
