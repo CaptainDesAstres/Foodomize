@@ -102,8 +102,12 @@ class Element:
 	
 	def load(self, xml):
 		'''load list from xml'''
-		return
-	
+		# get sub list
+		# get kind
+		# get name
+		# get coef
+		# load sub
+		
 	
 	
 	
