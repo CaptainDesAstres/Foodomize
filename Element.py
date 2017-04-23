@@ -96,6 +96,14 @@ class Element:
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+			else:
+				try:
+					menu = int(menu)
+				except Exception as e:
+					continue
+				
+				if menu < len( self.sub ):
+					self.sub[menu].menu()
 	
 	
 	
