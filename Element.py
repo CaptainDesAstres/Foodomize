@@ -172,6 +172,19 @@ h or help                Get some help'''+quitHelp)
 					ingredients = ingredients[0:-2]
 				
 				print('Ingredients: '+ingredients)
+			
+			if( len(self.extra) != 0 ):
+				ingredients = ''
+				for ing in self.extra:
+					ingredients += ing[0]+', '
+				
+				if len(ingredients) > 500:
+					ingredients = ingredients[0:498]+'…'
+				else:
+					ingredients = ingredients[0:-2]
+				
+				print('Extra ingredients: '+ingredients)
+			
 		else:
 			self.printList( page )
 	
