@@ -308,6 +308,16 @@ h or help                Get some help'''+quitHelp)
 				name = XML.decode( el.get('name') )
 				
 				self.accompaniments.append( name )
+		
+		
+		
+		# load related meals if specified
+		related = xml.find('related')
+		if related is not None:
+			for el in related:
+				path = XML.decode( el.get('path') )
+				
+				self.related.append( path )
 	
 	
 	
