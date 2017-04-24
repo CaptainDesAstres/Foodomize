@@ -206,7 +206,7 @@ h or help                Get some help'''+quitHelp)
 			else:
 				accompaniments = ''
 				for acc in self.accompaniments:
-					accompaniments += acc[0]+', '
+					accompaniments += acc+', '
 				
 				if len(ingredients) > 500:
 					accompaniments = accompaniments[0:498]+'…'
