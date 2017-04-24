@@ -733,6 +733,73 @@ m or main                Return to the main menu''')
 	
 	
 	
+	def manageRelatedMeal(self, main):
+		'''the menu to see and edit related meal list'''
+		page = 0
+		
+		while(True):
+			os.system('clear')# clear terminal output
+			
+			maxPage = ceil(len(self.related) / 15)-1
+			if (page > maxPage):
+				page = max ( 0, maxPage )
+			
+			#self.printList( page )
+			
+			menu = input('your move ? (h for help):').strip()
+			
+			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
+				if( menu[0].isupper() ):
+					return ( True, False, False )
+				else:
+					return ( False, False, False )
+				
+			elif(menu == 'SAFE'):
+				return ( False, True, False )
+				
+			elif(menu.lower() in ['m', 'main']):
+				return ( False, False, True )
+				
+			elif(menu in ['help', 'h']):
+				print('''Help:
+
+In menu:
+Type:                    To:
+g or grouped             Display meal list sorted by group
+l or list                Display normal meal list
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+n or new                 Relate to another meal
+
+h or help                Get some help
+q or quit                Quit the menu
+Q or Quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving
+m or main                Return to the main menu''')
+				
+				input('Press enter to continue')
+			elif ( menu in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (menu in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( menu == ''):
+					page = 0
+				else:
+					page = maxPage
+				
+			elif(menu in [ 'n', 'new' ] ):
+				#self.add(kind = 'accompaniment')
+				continue
+			
+	
+	
+	
+	
 	def freeName(self, name, tupleList = None):
 		'''check if a sub element already use the name.'''
 		if tupleList is None:
