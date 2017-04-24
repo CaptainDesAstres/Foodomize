@@ -337,10 +337,12 @@ h or help                Get some help'''+quitHelp)
 	def add(self, kind = ''):
 		'''Element adding menu'''
 		os.system('clear')# clear terminal output
+		nameList = None
 		
 		# print menu title
 		if kind == 'extra':
 			print('Add a new extra ingredient to \''+self.name+'\' variant :')
+			nameList = self.extra
 			
 		elif self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
@@ -364,7 +366,7 @@ h or help                Get some help'''+quitHelp)
 		elif self.kind == 'variant':
 			print('Add a new ingredient to \''+self.name+'\' variant :')
 			kind = 'ingredient'
-			
+			nameList = self.ingredients
 		
 		
 		# get a name:
@@ -376,7 +378,7 @@ h or help                Get some help'''+quitHelp)
 				print('Please, do not use «|» in the name.')
 			elif name == 'Main':
 				print('«Main» is a reserved name. choose anything else!')
-			elif self.freeName(name):
+			elif self.freeName(name, nameList):
 				break
 			else:
 				print('There is already an element name like this!')
