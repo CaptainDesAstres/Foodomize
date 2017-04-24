@@ -756,7 +756,7 @@ m or main                Return to the main menu''')
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			#self.printSuggested( page, sort )
+			self.printSuggested( page )
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -984,6 +984,39 @@ h or help                Get some help''')
 				if len(line) > 29:
 					line = line[0:29] + '…'
 					
+			
+			# print name
+			print(str(i)+'- '+line)
+			i+=1
+	
+	
+	
+	
+	def printSuggested( self, page):
+		''' print part of the suggested meal list'''
+		# title
+		print('		«'+self.name+'» related meals list:\n')
+		
+		# empty list
+		length = len(self.related)
+		if length == 0:
+			print('No suggested meals! type «n» to add one.')
+			return
+		
+		# page limits
+		i = page * 15
+		end = i+15
+		if end > length:
+			end = length
+		
+		# print page list
+		while(i < end):
+			print(self.related[i])
+			line = self.related[i].split('|')[-1]
+			
+			if len(line) > 29:
+				line = line[0:29] + '…'
+			
 			
 			# print name
 			print(str(i)+'- '+line)
