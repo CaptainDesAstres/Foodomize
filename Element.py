@@ -284,6 +284,9 @@ type the command to your editor:''').strip()
 		# get sub list
 		sub = xml.find('sub')
 		
+		if(self.name == 'Main'):
+			self.editor = XML.decode(xml.get('editor'))
+		
 		desc = xml.get('description')
 		if desc != None:
 			self.description = XML.decode( desc )
@@ -376,6 +379,9 @@ type the command to your editor:''').strip()
 				XML.encode(self.name)+'" coef="'+\
 				','.join( map( str, self.coef ) ) +'" recipe="'+\
 				str(self.recipe)+'" '
+		
+		if(self.name == 'Main'):
+			xml += 'editor="'+XML.encode(self.editor) +'" '
 		
 		if self.description != '':
 			xml += 'description="'+XML.encode(self.description) +'" '

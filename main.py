@@ -14,7 +14,6 @@ def main():
 	if os.path.exists(path) and os.access( path, os.R_OK ):
 		with open(path,'r') as backup:
 			mainlist.load( xmlMod.fromstring( backup.read( ) ) )
-			mainlist.editor = 'nano'
 	else:
 		mainlist.editor = 'nano'
 	
