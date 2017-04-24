@@ -793,9 +793,18 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu in [ 'n', 'new' ] ):
-				#self.add(kind = 'accompaniment')
-				continue
-			
+				suggest = main.suggest()
+				if suggest is not None:
+					self.related.append (suggest)
+				
+	
+	
+	
+	
+	
+	def suggest(self):
+		'''a method to suggest a meal to relate to another meal'''
+		return None
 	
 	
 	
