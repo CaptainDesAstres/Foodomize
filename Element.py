@@ -46,12 +46,18 @@ class Element:
 	
 	
 	
-	def menu(self, main = None):
+	def menu(self, main = None, path = ''):
 		'''Element/group menu'''
 		page = 0
 		
 		if main is None:
 			main = self
+		
+		if self.name != 'Main':
+			if path == '':
+				path = self.name
+			else:
+				path += '|'+self.name
 		
 		# quit flag 
 		#		(
@@ -151,7 +157,7 @@ h or help                Get some help'''+quitHelp)
 					quit = self.manageAccompaniment()
 					
 				elif( menu in [ 's', 'suggest' ] ):
-					quit = self.manageRelatedMeal( main )
+					quit = self.manageRelatedMeal( main, path )
 					
 			elif (menu == 'desc'):
 				self.editDescription()
@@ -162,7 +168,7 @@ h or help                Get some help'''+quitHelp)
 					continue
 				
 				if menu < len( self.sub ):
-					quit = self.sub[menu].menu( main )
+					quit = self.sub[menu].menu( main, path )
 					
 			if(quit[0] is True):
 				if self.name != 'Main':
