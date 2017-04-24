@@ -93,7 +93,11 @@ empty input              Same thing, back to first page when out of range
 n or new                 in a group, create a group or a dish group
                          in a dish group, create a dish
                          in a dish, create a variant
-                         in a variant, create an additionnal ingredient
+
+in a Variant of a dish:
+n or new                 create an additionnal ingredient
+i or ingredient          access ingredient menu
+
 h or help                Get some help'''+quit)
 				
 				input('Press enter to continue')
@@ -112,6 +116,8 @@ h or help                Get some help'''+quit)
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+			elif( menu in [ 'i', 'ingredient' ] and self.kind == 'variant' ):
+				self.manageIngredient()
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
@@ -393,6 +399,13 @@ This maner, it simple to made an element more likely to show up on some time of 
 					coef,
 					kind
 					) )
+	
+	
+	
+	
+	def manageIngredient(self):
+		'''the menu to see and edit ingrédients list'''
+		return
 	
 	
 	
