@@ -19,7 +19,7 @@ class Element:
 		self.kind = kind # group, dishes, dish, variant or ingredient
 		
 		self.description = ''
-		self.recipe = ''
+		self.recipe = False
 		self.ingredients = []
 		self.extra = []
 		self.accompaniments = []
