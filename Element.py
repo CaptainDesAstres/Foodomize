@@ -49,7 +49,13 @@ class Element:
 	def menu(self):
 		'''Element/group menu'''
 		page = 0
-		quit = False
+		# quit flag 
+		#		(
+		#		save and quit app,
+		#		quit app without saving,
+		#		return to main menu
+		#		)
+		quit = ( False, False, False )
 		
 		while(True):
 			os.system('clear')# clear terminal output
@@ -65,14 +71,14 @@ class Element:
 			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
 				if(self.name == 'Main'):
 					if(self.save()):
-						return True
+						return
 					else:
 						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
-							return True
+							return
 				elif( menu[0].isupper() ):
-					return True
+					return ( True, False, False )
 				else:
-					return False
+					return ( False, False, False )
 				
 			elif(menu in ['help', 'h']):
 				
@@ -141,16 +147,16 @@ h or help                Get some help'''+quitHelp)
 				if menu < len( self.sub ):
 					quit = self.sub[menu].menu()
 					
-			if(quit is True):
+			if(quit[0] is True):
 				if self.name != 'Main':
-					return True
+					return quit
 				else:
 					# save before to quit
 					if(self.save()):
-						return True
+						return quit
 					else:
 						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
-							return True
+							return quit
 	
 	
 	
@@ -520,9 +526,9 @@ This maner, it simple to made an element more likely to show up on some time of 
 			
 			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
 				if( menu[0].isupper() ):
-					return True
+					return ( True, False, False )
 				else:
-					return False
+					return ( False, False, False )
 				
 			elif(menu in ['help', 'h']):
 				print('''Help:
@@ -576,9 +582,9 @@ Q or Quit                Quit the app (automatically save before)''')
 			
 			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
 				if( menu[0].isupper() ):
-					return True
+					return ( True, False, False )
 				else:
-					return False
+					return ( False, False, False )
 				
 			elif(menu in ['help', 'h']):
 				print('''Help:
@@ -632,9 +638,9 @@ Q or Quit                Quit the app (automatically save before)''')
 			
 			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
 				if( menu[0].isupper() ):
-					return True
+					return ( True, False, False )
 				else:
-					return False
+					return ( False, False, False )
 				
 			elif(menu in ['help', 'h']):
 				print('''Help:
