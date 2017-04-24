@@ -800,9 +800,10 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu in [ 'n', 'new' ] ):
-				suggest = main.suggest( path[-1] ).split('|')
+				suggest = main.suggest( path[-1] )
 				
 				if suggest is not None and suggest is not True:
+					suggest = suggest.split('|')
 					main.relate( suggest, path )
 					main.relate( path, suggest )
 				
