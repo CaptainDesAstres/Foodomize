@@ -191,8 +191,15 @@ h or help                Get some help'''+quit)
 				# load sub
 				self.sub.append( Element( name, coef, kind ) )
 				self.sub[-1].load(el)
-			
 		
+		# load ingredient if specified
+		ings = xml.find('ingredients')
+		if ings is not None:
+			for el in ings:
+				name = XML.decode( el.get('name') )
+				amount = XML.decode( el.get('amount') )
+				
+				self.ingredients.append( (name, amount) )
 	
 	
 	
