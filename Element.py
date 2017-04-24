@@ -841,7 +841,12 @@ m or main                Return to the main menu''')
 			
 			self.print(page)
 			
-			choice = input('your choice ? (h for help):').strip()
+			if self.kind == 'variant':
+				choice = input('Valid current choice (press enter)? (h for help):').strip()
+			elif self.kind in ['dish', 'dishes']:
+				choice = input('Valid this choice (ok) or specify your choice: (h for help):').strip()
+			else:
+				choice = input('your choice ? (h for help):').strip()
 			
 			if( choice.lower() in ['exit', 'o', 'out', 'q', 'quit'] ):
 				return None
@@ -859,13 +864,18 @@ Type:                    To:
 < or -                   Previous 15 elements of the list
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
-ok                       valid current dish variant to be related to the selected meal
+ok                       valid current selection, you only can suggest dishes group, dish or dish variant
 
 c or cancel              Quit suggestion menu
 q or quit                Go back to previous group
 h or help                Get some help''')
 				
 				input('Press enter to continue')
+			elif (choice == '' and self.kind == 'variant'):
+				return self.name
+			elif (choice.lower() == 'ok' 
+						and self.kind in ['dishes', 'dish', 'variant'] ):
+				return self.name
 			elif ( choice in [ '-', '<' ] ):
 				if page > 0:
 					page -= 1
@@ -886,12 +896,14 @@ h or help                Get some help''')
 				
 				if choice < len( self.sub ):
 					out = self.sub[choice].suggest( meal )
-				if out is None:
-					continue
-				elif out is True:
-					return True
-				elif self.name!= 'Main':
-					return self.name+'|'+out
+					if out is None:
+						continue
+					elif out is True:
+						return True
+					elif self.name!= 'Main':
+						return self.name+'|'+out
+					else:
+						return out
 		
 		
 	
