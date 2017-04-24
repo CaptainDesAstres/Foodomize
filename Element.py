@@ -119,12 +119,13 @@ h or help                Get some help'''+quitHelp)
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
 				
-			elif( menu in [ 'i', 'ingredient' ] and self.kind == 'variant' ):
-				quit = self.manageIngredient()
-				
-			elif( menu in [ 'e', 'extra' ] and self.kind == 'variant' ):
-				quit = self.manageExtra()
-				
+			if self.kind == 'variant':
+				if( menu in [ 'i', 'ingredient' ] ):
+					quit = self.manageIngredient()
+					
+				elif( menu in [ 'e', 'extra' ] ):
+					quit = self.manageExtra()
+					
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
