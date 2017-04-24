@@ -226,6 +226,17 @@ h or help                Get some help'''+quitHelp)
 				amount = XML.decode( el.get('amount') )
 				
 				self.ingredients.append( (name, amount) )
+		
+		
+		
+		# load extra ingredient if specified
+		extra = xml.find('extra')
+		if extra is not None:
+			for el in extra:
+				name = XML.decode( el.get('name') )
+				amount = XML.decode( el.get('amount') )
+				
+				self.extra.append( (name, amount) )
 	
 	
 	
