@@ -45,11 +45,6 @@ class Element:
 	
 	
 	
-	def __str__(self):
-		'''return Element in a string form'''
-		return 'Not implemented'
-	
-	
 	
 	def menu(self):
 		'''Element/group menu'''
