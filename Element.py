@@ -242,12 +242,13 @@ h or help                Get some help'''+quit)
 			xml += '</sub>\n'
 		
 		# export ingredients
-		xml += '<ingredients>\n'
-		for el in self.ingredients:
-			xml += '\t<ingredient name="'\
-						+XML.encode(el[0])+'" amount="'\
-						+XML.encode(el[1])+'" />\n'
-		xml += '</ingredients>\n'
+		if len(self.ingredients)>0:
+			xml += '<ingredients>\n'
+			for el in self.ingredients:
+				xml += '\t<ingredient name="'\
+							+XML.encode(el[0])+'" amount="'\
+							+XML.encode(el[1])+'" />\n'
+			xml += '</ingredients>\n'
 		
 		xml += '</'+self.kind+'>\n'
 		
