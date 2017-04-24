@@ -330,6 +330,15 @@ h or help                Get some help'''+quitHelp)
 			xml += '</extra>\n'
 		
 		
+		# export accompaniments
+		if len(self.accompaniments)>0:
+			xml += '<accompaniments>\n'
+			for el in self.accompaniments:
+				xml += '\t<accompaniment name="'\
+							+XML.encode(el)+'" />\n'
+			xml += '</accompaniments>\n'
+		
+		
 		xml += '</'+self.kind+'>\n'
 		
 		return xml
