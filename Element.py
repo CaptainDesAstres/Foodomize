@@ -96,8 +96,9 @@ n or new                 in a group, create a group or a dish group
                          in a dish, create a variant
 
 in a Variant of a dish:
-n or new                 create an additionnal ingredient
-i or ingredient          access ingredient menu
+n or new                 Add an ingredient
+i or ingredient          access ingredients menu
+e or extra               access extra ingredients menu
 
 h or help                Get some help'''+quitHelp)
 				
@@ -117,8 +118,13 @@ h or help                Get some help'''+quitHelp)
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+				
 			elif( menu in [ 'i', 'ingredient' ] and self.kind == 'variant' ):
 				quit = self.manageIngredient()
+				
+			elif( menu in [ 'e', 'extra' ] and self.kind == 'variant' ):
+				quit = self.manageExtra()
+				
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
@@ -446,7 +452,61 @@ Type:                    To:
 < or -                   Previous 15 elements of the list
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
-n or new                 create an additionnal ingredient
+n or new                 Add an  ingredient
+
+h or help                Get some help''')
+				
+				input('Press enter to continue')
+			elif ( menu in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (menu in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( menu == ''):
+					page = 0
+				else:
+					page = maxPage
+				
+			elif(menu in [ 'n', 'new' ] ):
+				self.add()
+			
+	
+	
+	
+	
+	def manageExtra(self):
+		'''the menu to see and edit extra ingrédients list'''
+		page = 0
+		
+		while(True):
+			os.system('clear')# clear terminal output
+			
+			maxPage = ceil(len(self.extra) / 15)-1
+			if (page > maxPage):
+				page = max ( 0, maxPage )
+			
+			self.printList( page, self.extra )
+			
+			menu = input('your move ? (h for help):').strip()
+			
+			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
+				if( menu[0].isupper() ):
+					return True
+				else:
+					return False
+				
+			elif(menu in ['help', 'h']):
+				print('''Help:
+
+In menu:
+Type:                    To:
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+n or new                 create an extra ingredient
 
 h or help                Get some help''')
 				
