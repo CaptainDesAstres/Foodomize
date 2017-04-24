@@ -62,19 +62,7 @@ class Element:
 			if (page > maxPage):
 				page = maxPage
 			
-			print('			'+self.name+' menu')
-			
-			# print description
-			if self.name != 'Main':
-				if self.description == '':
-					print('No description. type "desc" to add one.\n')
-				else:
-					if len(self.description) < 500:
-						print(self.description+'\n')
-					else:
-						print(self.description[0:500]+'…\n')
-			
-			self.printSubList( page )
+			self.print(page)
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -150,6 +138,25 @@ h or help                Get some help'''+quit)
 							else:
 								if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
 									return True
+	
+	
+	
+	
+	def print (self, page=0):
+		'''print Element info as displayed in menu'''
+		print('			'+self.name+' menu')
+		
+		# print description
+		if self.name != 'Main':
+			if self.description == '':
+				print('No description. type "desc" to add one.\n')
+			else:
+				if len(self.description) < 500:
+					print(self.description+'\n')
+				else:
+					print(self.description[0:500]+'…\n')
+		
+		self.printSubList( page )
 	
 	
 	
