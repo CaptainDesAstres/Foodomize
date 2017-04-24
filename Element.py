@@ -488,7 +488,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			self.printList( page, self.ingredients )
+			self.printList( page, self.ingredients, 'ingredients' )
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -544,7 +544,7 @@ Q or Quit                Quit the app (automatically save before)''')
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			self.printList( page, self.extra )
+			self.printList( page, self.extra, 'extra ingredients' )
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -600,7 +600,7 @@ Q or Quit                Quit the app (automatically save before)''')
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			self.printList( page, self.accompaniments )
+			self.printList( page, self.accompaniments, 'accompaniments' )
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -661,13 +661,16 @@ Q or Quit                Quit the app (automatically save before)''')
 	
 	
 	
-	def printList(self, page, li = None ):
+	def printList(self, page, li = None, title = '' ):
 		''' print part of the sub element list'''
 		if li == None:
 			li = self.sub
+			title = ''
+		else:
+			title = ' '+title
 		
 		# title
-		print('		«'+self.name+'» list:\n')
+		print('		«'+self.name+'»'+title+' list:\n')
 		
 		# empty list
 		length = len(li)
