@@ -181,7 +181,7 @@ type the command to your editor:''').strip()
 						subprocess.call([main.editor, recipePath])
 					except Exception as e:
 						print(e)
-						input('press enter to continue')
+						input('press enter to ignore this error and continue')
 					
 					#check there is a saved file for the recipe
 					if os.path.exists(recipePath):
