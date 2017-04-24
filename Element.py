@@ -347,6 +347,10 @@ h or help                Get some help'''+quitHelp)
 			print('Add a new extra ingredient to \''+self.name+'\' variant :')
 			nameList = self.extra
 			
+		elif kind == 'accompaniment':
+			print('Add a new accompaniment to \''+self.name+'\' variant :')
+			
+			
 		elif self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
 			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
@@ -381,13 +385,14 @@ h or help                Get some help'''+quitHelp)
 				print('Please, do not use «|» in the name.')
 			elif name == 'Main':
 				print('«Main» is a reserved name. choose anything else!')
-			elif self.freeName(name, nameList):
+			elif (kind == 'accompaniment' and name not in self.accompaniments
+						or self.freeName(name, nameList)):
 				break
 			else:
 				print('There is already an element name like this!')
 		
 		# get coefficient or amount
-		while True:
+		while kind != 'accompaniment':
 			if kind in [ 'ingredient', 'extra' ]:
 				ask = 'amount'
 			else:
@@ -468,6 +473,8 @@ This maner, it simple to made an element more likely to show up on some time of 
 			self.ingredients.append( (name, coef) )
 		elif kind == 'extra':
 			self.extra.append( (name, coef) )
+		elif kind == 'accompaniment':
+			self.accompaniments.append( name )
 		else:
 			self.sub.append( Element(name,
 					coef,
