@@ -685,7 +685,8 @@ Type:                    To:
 < or -                   Previous 15 elements of the list
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
-n or new                 create an accompaniment
+n or new                 Create an accompaniment
+default                  Add default accompaniments
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -709,6 +710,16 @@ m or main                Return to the main menu''')
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add(kind = 'accompaniment')
+			elif(menu == 'default' ):
+				for acc in [ 
+							'Pasta',
+							'Rice',
+							'Potatoes',
+							'Wheat',
+							'Vegetable'
+							]:
+					if acc not in self.accompaniments:
+						self.accompaniments.append(acc)
 			
 	
 	
