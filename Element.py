@@ -248,6 +248,10 @@ h or help                Get some help'''+quitHelp)
 				
 				print('Accompaniments: '+accompaniments)
 			
+			
+			# suggest meal
+			print('type «s» to see suggested meal with this one')
+			
 		else:
 			self.printList( page )
 	
@@ -742,6 +746,7 @@ m or main                Return to the main menu''')
 	def manageRelatedMeal(self, main, path ):
 		'''the menu to see and edit related meal list'''
 		path = path.split('|')
+		sort = 'list'
 		page = 0
 		
 		while(True):
@@ -751,7 +756,7 @@ m or main                Return to the main menu''')
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			#self.printList( page )
+			#self.printSuggested( page, sort )
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -786,6 +791,12 @@ SAFE                     Quit the app WITHOUT saving
 m or main                Return to the main menu''')
 				
 				input('Press enter to continue')
+				
+			elif ( menu in [ 'g', 'grouped' ] ):
+				sort = 'group'
+			elif ( menu in [ 'l', 'list' ] ):
+				sort = 'list'
+				
 			elif ( menu in [ '-', '<' ] ):
 				if page > 0:
 					page -= 1
