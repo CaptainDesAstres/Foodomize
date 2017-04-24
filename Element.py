@@ -368,7 +368,8 @@ type the command to your editor:''').strip()
 		
 		xml += '<'+self.kind+' name="'+\
 				XML.encode(self.name)+'" coef="'+\
-				','.join( map( str, self.coef ) ) +'" '
+				','.join( map( str, self.coef ) ) +'" recipe="'+\
+				str(self.recipe)+'" '
 		
 		if self.description != '':
 			xml += 'description="'+XML.encode(self.description) +'" '
