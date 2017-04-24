@@ -826,14 +826,14 @@ m or main                Return to the main menu''')
 	def relate(self, path1, path2):
 		'''link related meal'''
 		if len(path1) > 0:
-			s = path1.pop(0)
+			s = path1[0]
 			
 			for sub in self.sub:
 				if sub.name == s:
-					sub.relate( path1, path2 )
+					sub.relate( path1[1:], path2 )
 		else:
 			if path2 not in self.related:
-				self.related.append(path2)
+				self.related.append('|'.join(path2) )
 	
 	
 	
@@ -1011,7 +1011,6 @@ h or help                Get some help''')
 		
 		# print page list
 		while(i < end):
-			print(self.related[i])
 			line = self.related[i].split('|')[-1]
 			
 			if len(line) > 29:
