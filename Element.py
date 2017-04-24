@@ -119,6 +119,7 @@ n or new                 Add an ingredient
 i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
 a or accompaniment       access accompaniments menu
+s or suggest             access suggested meal menu
 
 h or help                Get some help'''+quitHelp)
 				
@@ -148,6 +149,9 @@ h or help                Get some help'''+quitHelp)
 					
 				elif( menu in [ 'a', 'accompaniment' ] ):
 					quit = self.manageAccompaniment()
+					
+				elif( menu in [ 's', 'suggest' ] ):
+					quit = self.manageRelatedMeal( main )
 					
 			elif (menu == 'desc'):
 				self.editDescription()
