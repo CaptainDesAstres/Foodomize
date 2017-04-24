@@ -406,7 +406,54 @@ This maner, it simple to made an element more likely to show up on some time of 
 	
 	def manageIngredient(self):
 		'''the menu to see and edit ingrédients list'''
-		return True
+		page = 0
+		
+		while(True):
+			os.system('clear')# clear terminal output
+			
+			maxPage = ceil(len(self.ingredients) / 15)-1
+			if (page > maxPage):
+				page = max ( 0, maxPage )
+			
+			
+			
+			menu = input('your move ? (h for help):').strip()
+			
+			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
+				if( menu[0].isupper() ):
+					return True
+				else:
+					return False
+				
+			elif(menu in ['help', 'h']):
+				print('''Help:
+
+In menu:
+Type:                    To:
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+n or new                 create an additionnal ingredient
+
+h or help                Get some help''')
+				
+				input('Press enter to continue')
+			elif ( menu in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (menu in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( menu == ''):
+					page = 0
+				else:
+					page = maxPage
+				
+			elif(menu in [ 'n', 'new' ] ):
+				self.add()
+			
 	
 	
 	
