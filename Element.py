@@ -802,7 +802,7 @@ m or main                Return to the main menu''')
 			elif(menu in [ 'n', 'new' ] ):
 				suggest = main.suggest( path[-1] ).split('|')
 				
-				if suggest is not None:
+				if suggest is not None and suggest is not True:
 					main.relate( suggest, path )
 					main.relate( path, suggest )
 				
