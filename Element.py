@@ -156,7 +156,22 @@ h or help                Get some help'''+quit)
 				else:
 					print(self.description[0:500]+'…\n')
 		
-		self.printSubList( page )
+		if self.kind == 'variant':
+			if( len(self.ingredients) == 0 ):
+				print('Ingredients: No ingredient. Type «n» or «new» to add one.')
+			else:
+				ingredients = ''
+				for ing in self.ingredients:
+					ingredients += ing[0]+', '
+				
+				if len(ingredients) > 500:
+					ingredients = ingredients[0:498]+'…'
+				else:
+					ingredients = ingredients[0:-2]
+				
+				print('Ingredients: '+ingredients)
+		else:
+			self.printSubList( page )
 	
 	
 	
