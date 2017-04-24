@@ -46,9 +46,13 @@ class Element:
 	
 	
 	
-	def menu(self):
+	def menu(self, main = None):
 		'''Element/group menu'''
 		page = 0
+		
+		if main is None:
+			main = self
+		
 		# quit flag 
 		#		(
 		#		save and quit app,
@@ -154,7 +158,7 @@ h or help                Get some help'''+quitHelp)
 					continue
 				
 				if menu < len( self.sub ):
-					quit = self.sub[menu].menu()
+					quit = self.sub[menu].menu( main )
 					
 			if(quit[0] is True):
 				if self.name != 'Main':
