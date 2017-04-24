@@ -290,12 +290,15 @@ h or help                Get some help'''+quitHelp)
 	
 	
 	
-	def add(self):
+	def add(self, kind = ''):
 		'''Element adding menu'''
 		os.system('clear')# clear terminal output
 		
 		# print menu title
-		if self.kind == 'group':
+		if kind == 'extra':
+			print('Add a new extra ingredient to \''+self.name+'\' variant :')
+			
+		elif self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
 			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
 			
@@ -315,7 +318,7 @@ h or help                Get some help'''+quitHelp)
 			kind = 'variant'
 			
 		elif self.kind == 'variant':
-			print('Add a new additional ingredient to \''+self.name+'\' variant :')
+			print('Add a new ingredient to \''+self.name+'\' variant :')
 			kind = 'ingredient'
 			
 		
@@ -336,7 +339,7 @@ h or help                Get some help'''+quitHelp)
 		
 		# get coefficient or amount
 		while True:
-			if kind == 'ingredient':
+			if kind in [ 'ingredient', 'extra' ]:
 				ask = 'amount'
 			else:
 				ask = 'coefficient(s)'
@@ -347,7 +350,7 @@ h or help                Get some help'''+quitHelp)
 				return
 				
 			elif coef in [ 'h', 'help' ] :
-				if kind == 'ingredient':
+				if kind in [ 'ingredient', 'extra' ]:
 					print('''Amount help
 
 Amount of ingredient for the recipe. You can press enter with empty string or specify quantity as you wish.''')
@@ -372,7 +375,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 ''')
 				input('Press enter to continue:')
 				
-			elif kind == 'ingredient':
+			elif kind in [ 'ingredient', 'extra' ]:
 					break
 			elif coef == '':
 				
@@ -414,6 +417,8 @@ This maner, it simple to made an element more likely to show up on some time of 
 		
 		if kind == 'ingredient':
 			self.ingredients.append( (name, coef) )
+		elif kind == 'extra':
+			self.extra.append( (name, coef) )
 		else:
 			self.sub.append( Element(name,
 					coef,
@@ -525,7 +530,7 @@ h or help                Get some help''')
 					page = maxPage
 				
 			elif(menu in [ 'n', 'new' ] ):
-				self.add()
+				self.add(kind = 'extra')
 			
 	
 	
