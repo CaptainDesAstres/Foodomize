@@ -386,6 +386,15 @@ h or help                Get some help'''+quitHelp)
 			xml += '</accompaniments>\n'
 		
 		
+		# export related meal list
+		if len(self.accompaniments)>0:
+			xml += '<related>\n'
+			for el in self.related:
+				xml += '\t<meal path="'\
+							+XML.encode(el)+'" />\n'
+			xml += '</related>\n'
+		
+		
 		xml += '</'+self.kind+'>\n'
 		
 		return xml
