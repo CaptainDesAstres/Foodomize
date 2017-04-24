@@ -99,6 +99,7 @@ in a Variant of a dish:
 n or new                 Add an ingredient
 i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
+a or accompaniment       access accompaniments menu
 
 h or help                Get some help'''+quitHelp)
 				
@@ -166,6 +167,7 @@ h or help                Get some help'''+quitHelp)
 					print(self.description[0:500]+'…\n')
 		
 		if self.kind == 'variant':
+			# print ingredients
 			if( len(self.ingredients) == 0 ):
 				print('Ingredients: No ingredient. Type «n» or «new» to add one.')
 			else:
@@ -180,6 +182,8 @@ h or help                Get some help'''+quitHelp)
 				
 				print('Ingredients: '+ingredients)
 			
+			
+			# print extra ingredients
 			if( len(self.extra) != 0 ):
 				ingredients = ''
 				for ing in self.extra:
@@ -191,6 +195,22 @@ h or help                Get some help'''+quitHelp)
 					ingredients = ingredients[0:-2]
 				
 				print('Extra ingredients: '+ingredients)
+			
+			
+			# print accompaniments
+			if( len(self.accompaniments) == 0 ):
+				print('Accompaniments: No accompaniment suggested. Type «a» or «accompaniment» to access menu.')
+			else:
+				accompaniments = ''
+				for acc in self.accompaniments:
+					accompaniments += acc[0]+', '
+				
+				if len(ingredients) > 500:
+					accompaniments = accompaniments[0:498]+'…'
+				else:
+					accompaniments = accompaniments[0:-2]
+				
+				print('Accompaniments: '+accompaniments)
 			
 		else:
 			self.printList( page )
