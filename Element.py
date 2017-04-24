@@ -580,11 +580,16 @@ h or help                Get some help''')
 	
 	
 	
-	def freeName(self, name):
+	def freeName(self, name, tupleList = None):
 		'''check if a sub element already use the name.'''
-		for el in self.sub:
-			if el.name == name:
-				return False
+		if tupleList is None:
+			for el in self.sub:
+				if el.name == name:
+					return False
+		else:
+			for el in tupleList:
+				if el[0] == name:
+					return False
 		
 		return True
 	
