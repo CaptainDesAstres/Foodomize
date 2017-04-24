@@ -807,8 +807,10 @@ m or main                Return to the main menu''')
 				
 				if suggest is not None and suggest is not True:
 					suggest = suggest.split('|')
-					main.relate( suggest, path )
-					main.relate( path, suggest )
+					
+					if( path != suggest ):
+						main.relate( suggest, path )
+						main.relate( path, suggest )
 				
 	
 	
@@ -824,8 +826,9 @@ m or main                Return to the main menu''')
 				if sub.name == s:
 					sub.relate( path1[1:], path2 )
 		else:
-			if path2 not in self.related:
-				self.related.append('|'.join(path2) )
+			p = '|'.join(path2)
+			if p not in self.related:
+				self.related.append( p )
 	
 	
 	
