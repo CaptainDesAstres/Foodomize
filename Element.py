@@ -1,7 +1,7 @@
 #!/usr/bin/python3.4
 # -*-coding:Utf-8 -*
 '''Element base object'''
-import os, re
+import os, re, subprocess
 from math import ceil
 from XML import XML
 
@@ -170,7 +170,12 @@ type the command to your editor:''').strip()
 					
 				elif( menu == 'recipe'):
 					# run editor to see and modify recipe
-					continue
+					try:
+						subprocess.call(main.editor)
+					except Exception as e:
+						print(e)
+						input('press enter to continue')
+					
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
