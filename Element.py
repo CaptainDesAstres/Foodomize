@@ -282,7 +282,8 @@ type the command to your editor:''').strip()
 		desc = xml.get('description')
 		if desc != None:
 			self.description = XML.decode( desc )
-			
+		
+		self.recipe = xml.get('recipe') == 'True'
 		
 		if sub is not None:
 			for el in sub:
