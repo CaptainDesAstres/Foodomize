@@ -234,7 +234,7 @@ h or help                Get some help'''+quit)
 		xml += '>\n'
 		
 		# export sub element
-		in len(self.sub)>0:
+		if len(self.sub)>0:
 			xml += '<sub>\n'
 			for el in self.sub:
 				xml += el.toxml()
