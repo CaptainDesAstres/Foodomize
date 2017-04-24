@@ -181,15 +181,16 @@ h or help                Get some help'''+quit)
 			self.description = XML.decode( desc )
 			
 		
-		for el in sub:
-			# get kind, name, coef
-			kind = el.tag
-			name = XML.decode( el.get('name') )
-			coef = list(map( int, el.get('coef').split(',') ))
-			
-			# load sub
-			self.sub.append( Element( name, coef, kind ) )
-			self.sub[-1].load(el)
+		if sub is not None:
+			for el in sub:
+				# get kind, name, coef
+				kind = el.tag
+				name = XML.decode( el.get('name') )
+				coef = list(map( int, el.get('coef').split(',') ))
+				
+				# load sub
+				self.sub.append( Element( name, coef, kind ) )
+				self.sub[-1].load(el)
 			
 		
 	
