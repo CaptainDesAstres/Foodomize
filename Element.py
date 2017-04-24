@@ -699,11 +699,20 @@ Q or Quit                Quit the app (automatically save before)''')
 				# limit name size
 				if len(line) > 29:
 					line = line[0:29] + '…'
+				
 			elif(type (li[i]) is tuple):
 				if li[i][1] == '':
 					line = li[i][0]
 				else:
 					line = li[i][1]+' of '+li[i][0]
+				
+			elif(type (li[i]) is str):
+				line = li[i]
+				
+				# limit name size
+				if len(line) > 29:
+					line = line[0:29] + '…'
+					
 			
 			# print name
 			print(str(i)+'- '+line)
