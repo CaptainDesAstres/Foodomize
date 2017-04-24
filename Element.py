@@ -49,6 +49,7 @@ class Element:
 	def menu(self):
 		'''Element/group menu'''
 		page = 0
+		quit = False
 		
 		while(True):
 			os.system('clear')# clear terminal output
@@ -76,10 +77,10 @@ class Element:
 			elif(menu in ['help', 'h']):
 				
 				if(self.name == 'Main'):
-					quit = '''
+					quitHelp = '''
 q or quit                Quit the app (automatically save before)'''
 				else:
-					quit = '''
+					quitHelp = '''
 q or quit                Quit the menu
 Q or Quit                Quit the app (automatically save before)'''
 				
@@ -98,7 +99,7 @@ in a Variant of a dish:
 n or new                 create an additionnal ingredient
 i or ingredient          access ingredient menu
 
-h or help                Get some help'''+quit)
+h or help                Get some help'''+quitHelp)
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -117,7 +118,7 @@ h or help                Get some help'''+quit)
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
 			elif( menu in [ 'i', 'ingredient' ] and self.kind == 'variant' ):
-				self.manageIngredient()
+				quit = self.manageIngredient()
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
@@ -129,16 +130,16 @@ h or help                Get some help'''+quit)
 				if menu < len( self.sub ):
 					quit = self.sub[menu].menu()
 					
-					if(quit):
-						if self.name != 'Main':
+			if(quit is True):
+				if self.name != 'Main':
+					return True
+				else:
+					# save before to quit
+					if(self.save()):
+						return True
+					else:
+						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
 							return True
-						else:
-							# save before to quit
-							if(self.save()):
-								return True
-							else:
-								if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
-									return True
 	
 	
 	
@@ -405,7 +406,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 	
 	def manageIngredient(self):
 		'''the menu to see and edit ingrédients list'''
-		return
+		return True
 	
 	
 	
