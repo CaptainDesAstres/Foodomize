@@ -261,6 +261,16 @@ h or help                Get some help'''+quitHelp)
 				amount = XML.decode( el.get('amount') )
 				
 				self.extra.append( (name, amount) )
+		
+		
+		
+		# load accompaniments if specified
+		accs = xml.find('accompaniments')
+		if accs is not None:
+			for el in accs:
+				name = XML.decode( el.get('name') )
+				
+				self.accompaniments.append( name )
 	
 	
 	
