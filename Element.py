@@ -173,7 +173,7 @@ h or help                Get some help'''+quitHelp)
 				
 				print('Ingredients: '+ingredients)
 		else:
-			self.printSubList( page )
+			self.printList( page )
 	
 	
 	
@@ -469,13 +469,16 @@ h or help                Get some help''')
 	
 	
 	
-	def printSubList(self, page ):
+	def printList(self, page, li = None ):
 		''' print part of the sub element list'''
+		if li == None:
+			li = self.sub
+		
 		# title
 		print('		«'+self.name+'» list:\n')
 		
 		# empty list
-		length = len(self.sub)
+		length = len(li)
 		if length == 0:
 			print('empty list')
 			return
@@ -488,14 +491,17 @@ h or help                Get some help''')
 		
 		# print page list
 		while(i < end):
-			name = self.sub[i].name
-			
-			# limit name size
-			if len(name) > 29:
-				name = name[0:29] + '…'
+			if(type (li[i]) is Element):
+				line = li[i].name
+				
+				# limit name size
+				if len(line) > 29:
+					line = line[0:29] + '…'
+			elif(type (li[i]) is tuple):
+				line = li[i][1]+' of '+li[i][0]
 			
 			# print name
-			print(str(i)+'- '+name)
+			print(str(i)+'- '+line)
 			i+=1
 	
 	
