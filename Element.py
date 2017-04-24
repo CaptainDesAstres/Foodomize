@@ -274,6 +274,7 @@ h or help                Get some help'''+quitHelp)
 				xml += el.toxml()
 			xml += '</sub>\n'
 		
+		
 		# export ingredients
 		if len(self.ingredients)>0:
 			xml += '<ingredients>\n'
@@ -282,6 +283,17 @@ h or help                Get some help'''+quitHelp)
 							+XML.encode(el[0])+'" amount="'\
 							+XML.encode(el[1])+'" />\n'
 			xml += '</ingredients>\n'
+		
+		
+		# export extra ingredients
+		if len(self.extra)>0:
+			xml += '<extra>\n'
+			for el in self.extra:
+				xml += '\t<ingredient name="'\
+							+XML.encode(el[0])+'" amount="'\
+							+XML.encode(el[1])+'" />\n'
+			xml += '</extra>\n'
+		
 		
 		xml += '</'+self.kind+'>\n'
 		
