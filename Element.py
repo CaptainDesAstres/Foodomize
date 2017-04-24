@@ -296,15 +296,25 @@ h or help                Get some help'''+quit)
 			else:
 				print('There is already an element name like this!')
 		
-		# get coefficient
+		# get coefficient or amount
 		while True:
-			coef = input('Specify coefficient(s) (h for help, q to quit):')
+			if kind == 'ingredient':
+				ask = 'amount'
+			else:
+				ask = 'coefficient(s)'
+			
+			coef = input('Specify '+ask+' (h for help, q to quit):')
 			
 			if coef in ['q', 'quit', 'c', 'cancel']:
 				return
 				
 			elif coef in [ 'h', 'help' ] :
-				print('''Coefficient help
+				if kind == 'ingredient':
+					print('''Amount help
+
+Amount of ingredient for the recipe. You can press enter with empty string or specify quantity as you wish.''')
+				else:
+					print('''Coefficient help
 
 Coefficient of an element indicate how much you want it to be randomly choosen.
 0 will never be chossen, 2 have 2 times more chance to be choosen than 1. Each coefficient change the luck of other elements to be choosen.
@@ -324,7 +334,10 @@ This maner, it simple to made an element more likely to show up on some time of 
 ''')
 				input('Press enter to continue:')
 				
+			elif kind == 'ingredient':
+					break
 			elif coef == '':
+				
 				coef = 1
 				break
 				
@@ -361,10 +374,13 @@ This maner, it simple to made an element more likely to show up on some time of 
 				else:
 					print('Error, you must type 1 2 3 4 6 or 12 numbers. ')
 		
-		self.sub.append( Element(name,
-				coef,
-				kind
-				) )
+		if kind == 'ingredient':
+			self.ingredients.append( (name, coef) )
+		else:
+			self.sub.append( Element(name,
+					coef,
+					kind
+					) )
 	
 	
 	
