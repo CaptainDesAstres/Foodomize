@@ -171,10 +171,23 @@ type the command to your editor:''').strip()
 				elif( menu == 'recipe'):
 					# run editor to see and modify recipe
 					try:
-						subprocess.call(main.editor)
+						# get recipes directory path or create it
+						recipePath = os.path.realpath(__file__+'/../recipes')
+						if not os.path.exists(recipePath):
+							os.mkdir(recipePath)
+						
+						recipePath += '/'+path
+						
+						subprocess.call([main.editor, recipePath])
 					except Exception as e:
 						print(e)
 						input('press enter to continue')
+					
+					#check there is a saved file for the recipe
+					if os.path.exists(recipePath):
+						self.recipe = True
+					else:
+						self.recipe = False
 					
 			elif (menu == 'desc'):
 				self.editDescription()
