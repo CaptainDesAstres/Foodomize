@@ -746,7 +746,6 @@ m or main                Return to the main menu''')
 	def manageRelatedMeal(self, main, path ):
 		'''the menu to see and edit related meal list'''
 		path = path.split('|')
-		sort = 'list'
 		page = 0
 		
 		while(True):
@@ -777,8 +776,6 @@ m or main                Return to the main menu''')
 
 In menu:
 Type:                    To:
-g or grouped             Display meal list sorted by group
-l or list                Display normal meal list
 < or -                   Previous 15 elements of the list
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
@@ -791,11 +788,6 @@ SAFE                     Quit the app WITHOUT saving
 m or main                Return to the main menu''')
 				
 				input('Press enter to continue')
-				
-			elif ( menu in [ 'g', 'grouped' ] ):
-				sort = 'group'
-			elif ( menu in [ 'l', 'list' ] ):
-				sort = 'list'
 				
 			elif ( menu in [ '-', '<' ] ):
 				if page > 0:
