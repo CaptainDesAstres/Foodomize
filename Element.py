@@ -80,15 +80,20 @@ class Element:
 				else:
 					return ( False, False, False )
 				
+			elif(menu == 'SAFE'):
+				return ( False, True, False )
+				
 			elif(menu in ['help', 'h']):
 				
 				if(self.name == 'Main'):
 					quitHelp = '''
-q or quit                Quit the app (automatically save before)'''
+q or quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving'''
 				else:
 					quitHelp = '''
 q or quit                Quit the menu
-Q or Quit                Quit the app (automatically save before)'''
+Q or Quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving'''
 				
 				print('''Help:
 
@@ -157,6 +162,8 @@ h or help                Get some help'''+quitHelp)
 					else:
 						if( input('Quit confirmation (type y or yes):').strip().lower() in [ 'y', 'yes' ] ):
 							return quit
+			elif(quit[1] is True):
+				return quit
 	
 	
 	
@@ -530,6 +537,9 @@ This maner, it simple to made an element more likely to show up on some time of 
 				else:
 					return ( False, False, False )
 				
+			elif(menu == 'SAFE'):
+				return ( False, True, False )
+				
 			elif(menu in ['help', 'h']):
 				print('''Help:
 
@@ -542,7 +552,8 @@ n or new                 Add an  ingredient
 
 h or help                Get some help
 q or quit                Quit the menu
-Q or Quit                Quit the app (automatically save before)''')
+Q or Quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving''')
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -586,6 +597,9 @@ Q or Quit                Quit the app (automatically save before)''')
 				else:
 					return ( False, False, False )
 				
+			elif(menu == 'SAFE'):
+				return ( False, True, False )
+				
 			elif(menu in ['help', 'h']):
 				print('''Help:
 
@@ -598,7 +612,8 @@ n or new                 create an extra ingredient
 
 h or help                Get some help
 q or quit                Quit the menu
-Q or Quit                Quit the app (automatically save before)''')
+Q or Quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving''')
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -642,6 +657,9 @@ Q or Quit                Quit the app (automatically save before)''')
 				else:
 					return ( False, False, False )
 				
+			elif(menu == 'SAFE'):
+				return ( False, True, False )
+				
 			elif(menu in ['help', 'h']):
 				print('''Help:
 
@@ -654,7 +672,8 @@ n or new                 create an accompaniment
 
 h or help                Get some help
 q or quit                Quit the menu
-Q or Quit                Quit the app (automatically save before)''')
+Q or Quit                Quit the app (automatically save before)
+SAFE                     Quit the app WITHOUT saving''')
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
