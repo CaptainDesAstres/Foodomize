@@ -820,7 +820,8 @@ m or main                Return to the main menu''')
 				if sub.name == s:
 					sub.relate( path1, path2 )
 		else:
-			self.related.append(path2)
+			if path2 not in self.related:
+				self.related.append(path2)
 	
 	
 	
