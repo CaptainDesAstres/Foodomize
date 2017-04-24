@@ -234,10 +234,11 @@ h or help                Get some help'''+quit)
 		xml += '>\n'
 		
 		# export sub element
-		xml += '<sub>\n'
-		for el in self.sub:
-			xml += el.toxml()
-		xml += '</sub>\n'
+		in len(self.sub)>0:
+			xml += '<sub>\n'
+			for el in self.sub:
+				xml += el.toxml()
+			xml += '</sub>\n'
 		
 		# export ingredients
 		xml += '<ingredients>\n'
