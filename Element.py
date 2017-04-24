@@ -60,7 +60,7 @@ class Element:
 			
 			maxPage = ceil(len(self.sub) / 15)-1
 			if (page > maxPage):
-				page = maxPage
+				page = max ( 0, maxPage )
 			
 			self.print(page)
 			
