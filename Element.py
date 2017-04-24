@@ -739,8 +739,9 @@ m or main                Return to the main menu''')
 	
 	
 	
-	def manageRelatedMeal(self, main):
+	def manageRelatedMeal(self, main, path ):
 		'''the menu to see and edit related meal list'''
+		path = path.split('|')
 		page = 0
 		
 		while(True):
@@ -799,10 +800,27 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu in [ 'n', 'new' ] ):
-				suggest = main.suggest()
-				if suggest is not None:
-					self.related.append (suggest)
+				suggest = main.suggest().split('|')
 				
+				if suggest is not None:
+					main.relate( suggest, path )
+					main.relate( path, suggest )
+				
+	
+	
+	
+	
+	
+	def relate(self, path1, path2):
+		'''link related meal'''
+		if len(path1) > 0:
+			s = path1.pop(0)
+			
+			for sub in self.sub:
+				if sub.name == s:
+					sub.relate( path1, path2 )
+		else:
+			self.related.append(path2)
 	
 	
 	
