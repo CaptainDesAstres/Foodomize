@@ -127,6 +127,9 @@ h or help                Get some help'''+quitHelp)
 				elif( menu in [ 'e', 'extra' ] ):
 					quit = self.manageExtra()
 					
+				elif( menu in [ 'a', 'accompaniment' ] ):
+					quit = self.manageAccompaniment()
+					
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
@@ -505,7 +508,9 @@ Type:                    To:
 empty input              Same thing, back to first page when out of range
 n or new                 Add an  ingredient
 
-h or help                Get some help''')
+h or help                Get some help
+q or quit                Quit the menu
+Q or Quit                Quit the app (automatically save before)''')
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -559,7 +564,9 @@ Type:                    To:
 empty input              Same thing, back to first page when out of range
 n or new                 create an extra ingredient
 
-h or help                Get some help''')
+h or help                Get some help
+q or quit                Quit the menu
+Q or Quit                Quit the app (automatically save before)''')
 				
 				input('Press enter to continue')
 			elif ( menu in [ '-', '<' ] ):
@@ -577,6 +584,62 @@ h or help                Get some help''')
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add(kind = 'extra')
+			
+	
+	
+	
+	
+	def manageAccompaniment(self):
+		'''the menu to see and edit accompaniments list'''
+		page = 0
+		
+		while(True):
+			os.system('clear')# clear terminal output
+			
+			maxPage = ceil(len(self.accompaniments) / 15)-1
+			if (page > maxPage):
+				page = max ( 0, maxPage )
+			
+			self.printList( page, self.accompaniments )
+			
+			menu = input('your move ? (h for help):').strip()
+			
+			if(menu.lower() in ['exit', 'o', 'out', 'q', 'quit']):
+				if( menu[0].isupper() ):
+					return True
+				else:
+					return False
+				
+			elif(menu in ['help', 'h']):
+				print('''Help:
+
+In menu:
+Type:                    To:
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+n or new                 create an accompaniment
+
+h or help                Get some help
+q or quit                Quit the menu
+Q or Quit                Quit the app (automatically save before)''')
+				
+				input('Press enter to continue')
+			elif ( menu in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (menu in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( menu == ''):
+					page = 0
+				else:
+					page = maxPage
+				
+			elif(menu in [ 'n', 'new' ] ):
+				self.add(kind = 'accompaniment')
 			
 	
 	
