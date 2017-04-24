@@ -800,7 +800,7 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu in [ 'n', 'new' ] ):
-				suggest = main.suggest().split('|')
+				suggest = main.suggest( path[-1] ).split('|')
 				
 				if suggest is not None:
 					main.relate( suggest, path )
@@ -826,9 +826,74 @@ m or main                Return to the main menu''')
 	
 	
 	
-	def suggest(self):
+	def suggest(self, meal ):
 		'''a method to suggest a meal to relate to another meal'''
-		return None
+		page = 0
+		
+		while(True):
+			os.system('clear')# clear terminal output
+			
+			print('Suggest a meal to relate to «'+meal+'»:')
+			
+			maxPage = ceil(len(self.sub) / 15)-1
+			if (page > maxPage):
+				page = max ( 0, maxPage )
+			
+			self.print(page)
+			
+			choice = input('your choice ? (h for help):').strip()
+			
+			if( choice.lower() in ['exit', 'o', 'out', 'q', 'quit'] ):
+				return None
+				
+			elif( choice in ['c', 'cancel'] ):
+				return True
+				
+			elif(choice in ['help', 'h']):
+				print('''Suggest a related meal,Help:
+
+suggest a meal that can be eaten in the same moment.
+
+In menu:
+Type:                    To:
+< or -                   Previous 15 elements of the list
+> or +                   Next 15 elements of the list
+empty input              Same thing, back to first page when out of range
+ok                       valid current dish variant to be related to the selected meal
+
+c or cancel              Quit suggestion menu
+q or quit                Go back to previous group
+h or help                Get some help''')
+				
+				input('Press enter to continue')
+			elif ( choice in [ '-', '<' ] ):
+				if page > 0:
+					page -= 1
+			elif (choice in [ '', '+', '>' ] ):
+				maxPage = ceil(len(self.sub) / 15)
+				
+				if(page < maxPage):
+					page += 1
+				elif( choice == ''):
+					page = 0
+				else:
+					page = maxPage
+			else:
+				try:
+					choice = int(choice)
+				except Exception as e:
+					continue
+				
+				if choice < len( self.sub ):
+					out = self.sub[choice].suggest( meal )
+				if out is None:
+					continue
+				elif out is True:
+					return True
+				elif self.name!= 'Main':
+					return self.name+'|'+out
+		
+		
 	
 	
 	
