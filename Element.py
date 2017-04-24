@@ -127,9 +127,17 @@ e or extra               access extra ingredients menu
 a or accompaniment       access accompaniments menu
 s or suggest             access suggested meal menu
 
+editor                   Change the default text editor (used to edit recipe)
 h or help                Get some help'''+quitHelp)
 				
 				input('Press enter to continue')
+			elif ( menu == 'editor' ):
+				editor = input('''current editor: «'''+main.editor+'''».
+type the command to your editor:''').strip()
+				
+				if(editor != ''):
+					main.editor = editor
+				
 			elif ( menu in [ '-', '<' ] ):
 				if page > 0:
 					page -= 1
