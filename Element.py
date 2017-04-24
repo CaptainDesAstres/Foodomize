@@ -126,6 +126,7 @@ i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
 a or accompaniment       access accompaniments menu
 s or suggest             access suggested meal menu
+recipe                   read dish recipe
 
 editor                   Change the default text editor (used to edit recipe)
 h or help                Get some help'''+quitHelp)
@@ -167,6 +168,9 @@ type the command to your editor:''').strip()
 				elif( menu in [ 's', 'suggest' ] ):
 					quit = self.manageRelatedMeal( main, path )
 					
+				elif( menu == 'recipe'):
+					# run editor to see and modify recipe
+					continue
 			elif (menu == 'desc'):
 				self.editDescription()
 			else:
@@ -260,6 +264,10 @@ type the command to your editor:''').strip()
 			# suggest meal
 			print('type «s» to see suggested meal with this one')
 			
+			if(self.recipe):
+				print('type «recipe» to see this meal recipe in your editor.')
+			else:
+				print('actually no recipe for this meal. type «recipe» to write one in your prefered editor')
 		else:
 			self.printList( page )
 	
