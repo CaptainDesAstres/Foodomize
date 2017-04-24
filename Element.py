@@ -415,7 +415,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			
+			self.printList( page, self.ingredients )
 			
 			menu = input('your move ? (h for help):').strip()
 			
