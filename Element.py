@@ -127,7 +127,8 @@ i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
 a or accompaniment       access accompaniments menu
 s or suggest             access suggested meal menu
-recipe                   read dish recipe
+recipe                   read/edit dish recipe
+delete recipe            to delete recipe of this variant
 
 editor                   Change the default text editor (used to edit recipe)
 h or help                Get some help'''+quitHelp)
@@ -195,6 +196,25 @@ type the command to your editor:''').strip()
 						self.recipe = True
 					else:
 						self.recipe = False
+					
+				elif( menu == 'delete recipe' and self.recipe):
+					if input('Do you realy want to erase this recipe (type y or yes):')\
+							not in ['y', 'yes']:
+						continue
+					
+					try:
+						# get recipes directory path
+						recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
+						
+						# delete element recipe
+						if os.path.exists(recipePath):
+							os.remove(recipePath)
+						
+						self.recipe = False
+						
+					except Exception as e:
+						print(e)
+						input('press enter to ignore this error and continue')
 					
 			elif (menu == 'desc'):
 				self.editDescription()
