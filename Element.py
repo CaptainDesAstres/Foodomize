@@ -321,7 +321,7 @@ type the command to your editor:''').strip()
 		m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month-1]
 		
 		if self.name != 'Main':
-			print('Current working month: '+m+'.\n')
+			print('Current working month: '+m+'.')
 			
 			# print coefficient
 			self.printCoef(month=month)
@@ -329,12 +329,12 @@ type the command to your editor:''').strip()
 			
 			# print description
 			if self.description == '':
-				print('No description. type "desc" to add one.\n')
+				print('\nNo description. type "desc" to add one.\n')
 			else:
 				if len(self.description) < 500:
-					print(self.description+'\n')
+					print('\n'+self.description+'\n')
 				else:
-					print(self.description[0:500]+'…\n')
+					print('\n'+self.description[0:500]+'…\n')
 		else:
 			print('Current working month: '+m+'.\n')
 		
