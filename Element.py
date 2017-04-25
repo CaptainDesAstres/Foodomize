@@ -158,7 +158,7 @@ type the command to your editor:''').strip()
 				
 			elif( menu == 'name' ):
 				if self.name!= 'Main':
-					self.editName( parent )
+					path = self.editName( parent, main, path )
 				else:
 					input('«Main» menu can\'t be renamed. (Press enter to continue)')
 				
@@ -225,7 +225,7 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def editName( self, parent ):
+	def editName( self, parent, main, oldPath ):
 		'''edit Element name'''
 		# get a name:
 		while True :
@@ -250,7 +250,19 @@ type the command to your editor:''').strip()
 		# change name
 		self.name = name
 		
+		# change path
+		path = oldPath.split('|')
+		path[-1] = name
+		newPath = '|'.join( path )
+		
 		# adapt related meal path
+		for rel in self.related:
+			el = main.get(rel)
+			el.related.remove(oldPath)
+			el.append(newPath)
+		
+		# return the new path
+		return newPath
 	
 	
 	
