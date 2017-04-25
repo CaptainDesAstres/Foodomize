@@ -113,6 +113,7 @@ m or main                Return to the main menu'''
 
 In menu:
 Type:                    To:
+m or month               change month to use for coefficient for randomization
 < or -                   Previous 15 elements of the list
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
@@ -154,8 +155,8 @@ type the command to your editor:''').strip()
 				else:
 					page = maxPage
 				
-			elif(menu.lower() in [ 'n', 'new' ] ):
-				self.add()
+			elif(menu.lower() in [ 'm', 'month' ] ):
+				main.changeMonth()
 				
 			elif( menu.lower() == 'name' ):
 				if self.name!= 'Main':
@@ -241,6 +242,38 @@ type the command to your editor:''').strip()
 				return quit
 			elif(quit[2] is True and self.name != 'Main'):
 				return quit
+	
+	
+	
+	
+	def changeMonth( self ):
+		'''change working month (only use with main element).'''
+		months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+		os.system('clear')
+		
+		print('			Change working month:\n\nCurrent working month: '\
+					+months[ self.month-1 ]+'.\n\nType a number between 1 and 12 or the full name of the month.')
+		
+		while True:
+			m = input('Type the wanted working month:').strip()
+			
+			if m == '':
+				return
+			
+			if m.capitalize() in months:
+				self.month = months.index(m.capitalize()) + 1
+				return
+			else:
+				try:
+					m = int(m)
+					if m > 0 and m < 13:
+						self.month = m
+						return
+					else:
+						print('Error, '+str(m)+' is not a valid value')
+				except Exception as e:
+					print('Error, '+m+' is not a valid value')
+					continue
 	
 	
 	
