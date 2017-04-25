@@ -256,13 +256,30 @@ type the command to your editor:''').strip()
 		newPath = '|'.join( path )
 		
 		# adapt related meal path
-		for rel in self.related:
-			el = main.get(rel)
-			el.related.remove(oldPath)
-			el.append(newPath)
+		main.relatedPathInvert( oldPath, newPath )
 		
 		# return the new path
 		return newPath
+	
+	
+	
+	
+	def relatedPathInvert( self, old, new ):
+		'''recursively modify'''
+		# change path
+		if old in self.related:
+			self.related.remove(old)
+			self.related.append(new)
+		
+		# erase double
+		while old in self.related:
+			self.related.remove(old)
+		
+		# recursively do it for sub element
+		for el in self.sub:
+			el.relatedPathInvert( old, new )
+		
+		
 	
 	
 	
