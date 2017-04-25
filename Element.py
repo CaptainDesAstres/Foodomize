@@ -505,7 +505,7 @@ type the command to your editor:''').strip()
 		
 		
 		# export related meal list
-		if len(self.accompaniments)>0:
+		if len(self.related)>0:
 			xml += '<related>\n'
 			for el in self.related:
 				xml += '\t<meal path="'\
