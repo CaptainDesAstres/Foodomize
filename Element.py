@@ -1,7 +1,7 @@
 #!/usr/bin/python3.4
 # -*-coding:Utf-8 -*
 '''Element base object'''
-import os, re, subprocess
+import os, re, subprocess, shutil
 from math import ceil
 from XML import XML
 
@@ -277,6 +277,17 @@ type the command to your editor:''').strip()
 		
 		# adapt related meal path
 		main.relatedPathInvert( oldPath, newPath )
+		
+		#change recipe file name
+		if self.recipe:
+			rep = os.path.realpath(__file__+'/../recipes')
+			oldfile = rep+'/'+oldPath
+			newfile = rep+'/'+newPath
+			
+			# change file name
+			if os.path.exists(oldfile):
+				shutil.move( oldfile, newfile )
+		
 		
 		# return the new path
 		return newPath
