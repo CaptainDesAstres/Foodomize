@@ -46,7 +46,7 @@ class Element:
 	
 	
 	
-	def menu(self, main = None, path = ''):
+	def menu(self, main = None, path = '', parent = None ):
 		'''Element/group menu'''
 		page = 0
 		
@@ -119,6 +119,7 @@ empty input              Same thing, back to first page when out of range
 n or new                 in a group, create a group or a dish group
                          in a dish group, create a dish
                          in a dish, create a variant
+name                     edit current element name
 
 in a Variant of a dish:
 n or new                 Add an ingredient
@@ -154,6 +155,12 @@ type the command to your editor:''').strip()
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+				
+			elif( menu == 'name' ):
+				if self.name!= 'Main':
+					self.editName( parent )
+				else:
+					input('«Main» menu can\'t be renamed. (Press enter to continue)')
 				
 			if self.kind == 'variant':
 				if( menu in [ 'i', 'ingredient' ] ):
@@ -198,7 +205,7 @@ type the command to your editor:''').strip()
 					continue
 				
 				if menu < len( self.sub ):
-					quit = self.sub[menu].menu( main, path )
+					quit = self.sub[menu].menu( main, path, self )
 					
 			if(quit[0] is True):
 				if self.name != 'Main':
@@ -214,6 +221,36 @@ type the command to your editor:''').strip()
 				return quit
 			elif(quit[2] is True and self.name != 'Main'):
 				return quit
+	
+	
+	
+	
+	def editName( self, parent ):
+		'''edit Element name'''
+		# get a name:
+		while True :
+			name = input('Choose a new name for «'+self.name+'»:')\
+							.strip().lower().capitalize()
+			
+			# check the name
+			if name == '':
+				return
+				
+			elif '|' in name:
+				print('Please, do not use «|» in the name.')
+				
+			elif name == 'Main':
+				print('«Main» is a reserved name. choose anything else!')
+				
+			elif (parent.freeName( name )):
+				break
+			else:
+				print('There is already an element name like this!')
+		
+		# change name
+		self.name = name
+		
+		# adapt related meal path
 	
 	
 	
