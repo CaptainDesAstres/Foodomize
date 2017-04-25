@@ -230,7 +230,7 @@ type the command to your editor:''').strip()
 		# get a name:
 		while True :
 			name = input('Choose a new name for «'+self.name+'»:')\
-							.strip().lower().capitalize()
+							.strip().lower().title()
 			
 			# check the name
 			if name == '':
@@ -561,7 +561,7 @@ type the command to your editor:''').strip()
 		
 		# get a name:
 		while True :
-			name = input('choose a name:').strip().lower().capitalize()
+			name = input('choose a name:').strip().lower().title()
 			if name == '':
 				return
 			elif '|' in name:
