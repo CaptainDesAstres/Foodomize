@@ -848,26 +848,29 @@ m or main                Return to the main menu''')
 			elif(menu in [ 'n', 'new' ] ):
 				self.add(kind = 'extra')
 				
-			elif menu.startswith('delete '):
+			elif menu.startswith('delete ') or menu.startswith('d ') :
+				if menu.startswith('delete '):
+					i = menu[7:]
+				else:
+					i = menu[2:]
 				
 				# get ingredient index
 				try:
-					index = int(menu[7:])
+					index = int(i)
 				except Exception as e:
-					print('Error: «'+menu[7:]+'» is not an integer')
+					print('Error: «'+i+'» is not an integer')
 					input('press enter to continue')
 				
 				# check index is in the range
 				if index >= len(self.extra) or index < 0:
-					input('No ingredient with index '+str(index)+'. press enter to continue.')
+					input('No extra ingredient with index '+str(index)+'. press enter to continue.')
 					continue
 				
 				# ask to confirm
-				if input('do you realy want to delete «'+self.extra[index][0]+'» ingredient?(press enter to confirm or type anything to cancel)') != '':
+				if input('do you realy want to delete «'+self.extra[index][0]+'» extra ingredient?(press enter to confirm or type anything to cancel)') != '':
 					continue
 				
 				self.extra.pop(index)
-			
 	
 	
 	
