@@ -734,7 +734,7 @@ Type:                    To:
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
 n or new                 Add an  ingredient
-d N or delete N          delete the ingerdient with index N
+d N or delete N          delete the ingredient with index N
 d 0 1 2 3                delete each ingredient listed (0 1 2 and 3)
 
 h or help                Get some help
@@ -1074,6 +1074,8 @@ Type:                    To:
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
 n or new                 Relate to another meal
+d N or delete N          unrelate the meal with index N
+d 0 1 2 3                unrelate each meal listed (0 1 2 and 3)
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -1107,6 +1109,52 @@ m or main                Return to the main menu''')
 						suggest = main.getPath(suggest.split('|'))
 						if path not in suggest.related:
 							suggest.related.append( path )
+				
+			elif menu.startswith('delete ') or menu.startswith('d ') :
+				if menu.startswith('delete '):
+					i = menu[7:].split(' ')
+				else:
+					i = menu[2:].split(' ')
+				
+				# get related meal index
+				try:
+					index = []
+					for el in i:
+						if el != '':
+							index.append( int( el ) )
+					
+				except Exception as e:
+					print('Error: «'+el+'» is not an integer')
+					input('press enter to continue')
+					continue
+				
+				# erase index duplicate values
+				index = list( set( index ) )
+				
+				# check index is in the range
+				error = False
+				names = []
+				for i in index:
+					if i >= len(self.related) or i < 0:
+						input('No related meal with index '+str(i)+'. press enter to continue.')
+						error = True
+						break
+					else:
+						names.append(self.related[i].split('|')[-1])
+				if error:
+					continue
+				names = ', '.join(names)
+				
+				# ask to confirm
+				if input('do you realy want to delete «'+names+'» meal from the relate meal list?(press enter to confirm or type anything to cancel)') != '':
+					continue
+				
+				# erase each ingredient
+				index.sort(reverse=True)
+				for i in index:
+					relPath = self.related.pop(i).split('|')
+					main.getPath(relPath).related.remove( '|'.join( path) )
+			
 	
 	
 	
