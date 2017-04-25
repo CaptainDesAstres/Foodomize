@@ -1160,6 +1160,28 @@ m or main                Return to the main menu''')
 	
 	
 	
+	def printCoef(self, full = False , month = None ):
+		'''display coefficients of the Element'''
+		months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+		
+		if month is not None:
+			month -= 1
+			print('The coefficient is '+str( self.coef[ month ] )+' for '\
+					+months[month]+'.')
+		elif full:
+			print('''The current coefficients, month by month, are:
+January  => '''+str( self.coef[0] )+'''                July      => '''+str( self.coef[6] )+'''
+February => '''+str( self.coef[1] )+'''                August    => '''+str( self.coef[7] )+'''
+March    => '''+str( self.coef[2] )+'''                September => '''+str( self.coef[8] )+'''
+April    => '''+str( self.coef[3] )+'''                October   => '''+str( self.coef[9] )+'''
+May      => '''+str( self.coef[4] )+'''                November  => '''+str( self.coef[10] )+'''
+June     => '''+str( self.coef[5] )+'''                December  => '''+str( self.coef[11] ))
+		else:
+			print('coefficients :'+str( self.coef ))
+	
+	
+	
+	
 	def getPath(self, path):
 		'''get element from path'''
 		if len(path) > 0:
