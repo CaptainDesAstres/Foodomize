@@ -823,7 +823,7 @@ Type:                    To:
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
 n or new                 create an extra ingredient
-delete N                 delete the extra ingerdient with index N
+delete N                 delete the extra ingredient with index N
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -912,6 +912,7 @@ Type:                    To:
 empty input              Same thing, back to first page when out of range
 n or new                 Create an accompaniment
 default                  Add default accompaniments
+delete N                 delete the accompaniment with index N
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -945,6 +946,30 @@ m or main                Return to the main menu''')
 							]:
 					if acc not in self.accompaniments:
 						self.accompaniments.append(acc)
+				
+			elif menu.startswith('delete ') or menu.startswith('d ') :
+				if menu.startswith('delete '):
+					i = menu[7:]
+				else:
+					i = menu[2:]
+				
+				# get ingredient index
+				try:
+					index = int(i)
+				except Exception as e:
+					print('Error: «'+i+'» is not an integer')
+					input('press enter to continue')
+				
+				# check index is in the range
+				if index >= len(self.accompaniments) or index < 0:
+					input('No accompaniments with index '+str(index)+'. press enter to continue.')
+					continue
+				
+				# ask to confirm
+				if input('do you realy want to delete «'+self.accompaniments[index]+'» accompaniments?(press enter to confirm or type anything to cancel)') != '':
+					continue
+				
+				self.accompaniments.pop(index)
 			
 	
 	
