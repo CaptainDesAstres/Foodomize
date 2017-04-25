@@ -121,6 +121,7 @@ n or new                 in a group, create a group or a dish group
                          in a dish group, create a dish
                          in a dish, create a variant
 name                     edit current element name
+c or coef                edit current element coefficients
 
 in a Variant of a dish:
 n or new                 Add an ingredient
@@ -157,6 +158,9 @@ type the command to your editor:''').strip()
 				
 			elif(menu.lower() in [ 'm', 'month' ] ):
 				main.changeMonth()
+				
+			elif(menu.lower() in [ 'c', 'coef' ] and self.name != 'Main'):
+				self.editCoef()
 				
 			elif( menu.lower() == 'name' ):
 				if self.name!= 'Main':
@@ -242,6 +246,89 @@ type the command to your editor:''').strip()
 				return quit
 			elif(quit[2] is True and self.name != 'Main'):
 				return quit
+	
+	
+	
+	
+	def editCoef( self ):
+		'''edit element coefficients'''
+		# get coefficient or amount
+		while True:
+			os.system('clear')
+			
+			print('			Edit coefficients for '+self.name+':\n')
+			self.printCoef( True )
+			
+			coef = input('Specify new coefficient(s) (h for help):')
+			
+			if coef in ['', 'q', 'quit', 'c', 'cancel']:
+				return
+				
+			elif coef in [ 'h', 'help' ] :
+				print('''Coefficient help
+
+Coefficient of an element indicate how much you want it to be randomly choosen.
+0 will never be chossen, 2 have 2 times more chance to be choosen than 1. Each coefficient change the luck of other elements to be choosen.
+The coefficient MUST ABSOLUTELY BE A POSITIVE INTEGER as greater as you want!
+
+Type one number and it will be used all the year.
+
+Type multiple number separated by a space or a / or a - (empty = 0):
+With 2 numbers, each define 6 months.
+3 numbers = 4 months each
+4 numbers = 3 months each
+6 numpers = 2 months each
+12 numbers = 1 for each month
+
+This maner, it simple to made an element more likely to show up on some time of the year, like winter/summer dishes.
+''')
+				input('Press enter to continue:')
+				
+			else:
+				coefs = re.split( '-| |/', coef )
+				
+				if len (coefs) == 1:
+					try:
+						coef = int(coefs[0])
+					except Exception as e:
+						print('Error, you\'ve probably type invalid value')
+						continue
+					break
+					
+				elif len(coefs) in [ 2, 3, 4, 6, 12 ]:
+					coef = []
+					noerror = True
+					for c in coefs:
+						
+						if c == '':
+							coef.append(0)
+							
+						else:
+							try:
+								coef.append( int(c) )
+							except Exception as e:
+								print('Error, you\'ve probably type an invalid value')
+								noerror = False
+								break
+					
+					if noerror:
+						break
+					
+				else:
+					print('Error, you must type 1 2 3 4 6 or 12 numbers. ')
+		
+		
+		if ( type(coef) == int ):
+			self.coef = [coef]*12
+		else:
+			l=len(coef) 
+			if l == 12 :
+				self.coef = coef
+			elif l in [ 6, 4, 3, 2 ]:
+				l = int(12 / l)
+				self.coef = []
+				while ( len(coef) != 0 ):
+					self.coef.extend( [ coef.pop(0) ] * l )
 	
 	
 	
