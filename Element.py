@@ -895,6 +895,21 @@ m or main                Return to the main menu''')
 	
 	
 	
+	def getPath(self, path):
+		'''get element from path'''
+		if len(path) > 0:
+			s = path[0]
+			
+			for sub in self.sub:
+				if sub.name == s:
+					return sub.get( path[1:])
+		else:
+			return self
+	
+	
+	
+	
+	
 	def suggest(self, meal ):
 		'''a method to suggest a meal to relate to another meal'''
 		page = 0
