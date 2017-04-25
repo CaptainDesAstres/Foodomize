@@ -955,6 +955,7 @@ empty input              Same thing, back to first page when out of range
 n or new                 Create an accompaniment
 default                  Add default accompaniments
 delete N                 delete the accompaniment with index N
+d 0 1 2 3                delete each accompaniment listed (0 1 2 and 3)
 
 h or help                Get some help
 q or quit                Quit the menu
