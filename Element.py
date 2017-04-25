@@ -991,28 +991,47 @@ m or main                Return to the main menu''')
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
-					i = menu[7:]
+					i = menu[7:].split(' ')
 				else:
-					i = menu[2:]
+					i = menu[2:].split(' ')
 				
-				# get ingredient index
+				# get accompaniment index
 				try:
-					index = int(i)
+					index = []
+					for el in i:
+						if el != '':
+							index.append( int( el ) )
+					
 				except Exception as e:
-					print('Error: «'+i+'» is not an integer')
+					print('Error: «'+el+'» is not an integer')
 					input('press enter to continue')
+					continue
+				
+				# erase index duplicate values
+				index = list( set( index ) )
 				
 				# check index is in the range
-				if index >= len(self.accompaniments) or index < 0:
-					input('No accompaniments with index '+str(index)+'. press enter to continue.')
+				error = False
+				names = []
+				for i in index:
+					if i >= len(self.accompaniments) or i < 0:
+						input('No accompaniment with index '+str(i)+'. press enter to continue.')
+						error = True
+						break
+					else:
+						names.append(self.accompaniments[i])
+				if error:
 					continue
+				names = ', '.join(names)
 				
 				# ask to confirm
-				if input('do you realy want to delete «'+self.accompaniments[index]+'» accompaniments?(press enter to confirm or type anything to cancel)') != '':
+				if input('do you realy want to delete «'+names+'» accompaniments?(press enter to confirm or type anything to cancel)') != '':
 					continue
 				
-				self.accompaniments.pop(index)
-			
+				# erase each accompaniments
+				index.sort(reverse=True)
+				for i in index:
+					self.accompaniments.pop(i)
 	
 	
 	
