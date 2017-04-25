@@ -933,29 +933,13 @@ m or main                Return to the main menu''')
 				suggest = main.suggest( path[-1] )
 				
 				if suggest is not None and suggest is not True:
-					suggest = suggest.split('|')
-					
-					if( path != suggest ):
-						main.relate( suggest, path )
-						main.relate( path, suggest )
-				
-	
-	
-	
-	
-	
-	def relate(self, path1, path2):
-		'''link related meal'''
-		if len(path1) > 0:
-			s = path1[0]
-			
-			for sub in self.sub:
-				if sub.name == s:
-					sub.relate( path1[1:], path2 )
-		else:
-			p = '|'.join(path2)
-			if p not in self.related:
-				self.related.append( p )
+					if( path != suggest and path not in self.related):
+						self.related.append( suggest )
+						
+						path = '|'.join(path)
+						suggest = main.getPath(suggest.split('|'))
+						if path not in suggest.related:
+							suggest.related.append( path )
 	
 	
 	
@@ -968,7 +952,7 @@ m or main                Return to the main menu''')
 			
 			for sub in self.sub:
 				if sub.name == s:
-					return sub.get( path[1:])
+					return sub.getPath( path[1:])
 		else:
 			return self
 	
