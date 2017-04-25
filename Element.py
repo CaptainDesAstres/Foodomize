@@ -323,6 +323,10 @@ type the command to your editor:''').strip()
 		if self.name != 'Main':
 			print('Current working month: '+m+'.\n')
 			
+			# print coefficient
+			self.printCoef(month=month)
+			self.printCoef()
+			
 			# print description
 			if self.description == '':
 				print('No description. type "desc" to add one.\n')
@@ -331,10 +335,6 @@ type the command to your editor:''').strip()
 					print(self.description+'\n')
 				else:
 					print(self.description[0:500]+'…\n')
-			
-			# print coefficient
-			self.printCoef(month=month)
-			self.printCoef()
 		else:
 			print('Current working month: '+m+'.\n')
 		
