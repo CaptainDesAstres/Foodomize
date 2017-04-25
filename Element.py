@@ -734,6 +734,7 @@ Type:                    To:
 > or +                   Next 15 elements of the list
 empty input              Same thing, back to first page when out of range
 n or new                 Add an  ingredient
+delete N                 delete the ingerdient with index N
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -757,6 +758,26 @@ m or main                Return to the main menu''')
 				
 			elif(menu in [ 'n', 'new' ] ):
 				self.add()
+				
+			elif menu.startswith('delete '):
+				
+				# get ingredient index
+				try:
+					index = int(menu[7:])
+				except Exception as e:
+					print('Error: «'+menu[7:]+'» is not an integer')
+					input('press enter to continue')
+				
+				# check index is in the range
+				if index >= len(self.ingredients) or index < 0:
+					input('No ingredient with index '+str(index)+'. press enter to continue.')
+					continue
+				
+				# ask to confirm
+				if input('do you realy want to delete «'+self.ingredients[index][0]+'» ingredient?(press enter to confirm or type anything to cancel)') != '':
+					continue
+				
+				self.ingredients.pop(index)
 			
 	
 	
