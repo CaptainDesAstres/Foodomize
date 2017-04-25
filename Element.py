@@ -735,6 +735,7 @@ Type:                    To:
 empty input              Same thing, back to first page when out of range
 n or new                 Add an  ingredient
 d N or delete N          delete the ingerdient with index N
+d 0 1 2 3                delete each ingredient listed (0 1 2 and 3)
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -761,27 +762,46 @@ m or main                Return to the main menu''')
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
-					i = menu[7:]
+					i = menu[7:].split(' ')
 				else:
-					i = menu[2:]
+					i = menu[2:].split(' ')
 				
 				# get ingredient index
 				try:
-					index = int(i)
+					index = []
+					for el in i:
+						if el != '':
+							index.append( int( el ) )
+					
 				except Exception as e:
 					print('Error: «'+i+'» is not an integer')
 					input('press enter to continue')
 				
+				# erase index duplicate values
+				index = list( set( index ) )
+				
 				# check index is in the range
-				if index >= len(self.ingredients) or index < 0:
-					input('No ingredient with index '+str(index)+'. press enter to continue.')
+				error = False
+				names = []
+				for i in index:
+					if i >= len(self.ingredients) or i < 0:
+						input('No ingredient with index '+str(i)+'. press enter to continue.')
+						error = True
+						break
+					else:
+						names.append(self.ingredients[i][0])
+				if error:
 					continue
+				names = ', '.join(names)
 				
 				# ask to confirm
-				if input('do you realy want to delete «'+self.ingredients[index][0]+'» ingredient?(press enter to confirm or type anything to cancel)') != '':
+				if input('do you realy want to delete «'+names+'» ingredient?(press enter to confirm or type anything to cancel)') != '':
 					continue
 				
-				self.ingredients.pop(index)
+				# erase each ingredient
+				index.sort(reverse=True)
+				for i in index:
+					self.ingredients.pop(i)
 			
 	
 	
