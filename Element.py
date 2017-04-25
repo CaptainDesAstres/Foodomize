@@ -96,7 +96,7 @@ class Element:
 			elif(menu.lower() in ['m', 'main'] and self.name != 'Main'):
 				return ( False, False, True )
 				
-			elif(menu in ['help', 'h']):
+			elif(menu.lower() in ['help', 'h']):
 				
 				if(self.name == 'Main'):
 					quitHelp = '''
@@ -134,7 +134,7 @@ editor                   Change the default text editor (used to edit recipe)
 h or help                Get some help'''+quitHelp)
 				
 				input('Press enter to continue')
-			elif ( menu == 'editor' ):
+			elif ( menu.lower() == 'editor' ):
 				editor = input('''current editor: «'''+main.editor+'''».
 type the command to your editor:''').strip()
 				
@@ -154,29 +154,29 @@ type the command to your editor:''').strip()
 				else:
 					page = maxPage
 				
-			elif(menu in [ 'n', 'new' ] ):
+			elif(menu.lower() in [ 'n', 'new' ] ):
 				self.add()
 				
-			elif( menu == 'name' ):
+			elif( menu.lower() == 'name' ):
 				if self.name!= 'Main':
 					path = self.editName( parent, main, path )
 				else:
 					input('«Main» menu can\'t be renamed. (Press enter to continue)')
 				
 			if self.kind == 'variant':
-				if( menu in [ 'i', 'ingredient' ] ):
+				if( menu.lower() in [ 'i', 'ingredient' ] ):
 					quit = self.manageIngredient()
 					
-				elif( menu in [ 'e', 'extra' ] ):
+				elif( menu.lower() in [ 'e', 'extra' ] ):
 					quit = self.manageExtra()
 					
-				elif( menu in [ 'a', 'accompaniment' ] ):
+				elif( menu.lower() in [ 'a', 'accompaniment' ] ):
 					quit = self.manageAccompaniment()
 					
-				elif( menu in [ 's', 'suggest' ] ):
+				elif( menu.lower() in [ 's', 'suggest' ] ):
 					quit = self.manageRelatedMeal( main, path )
 					
-				elif( menu == 'recipe'):
+				elif( menu.lower() == 'recipe'):
 					# run editor to see and modify recipe
 					try:
 						# get recipes directory path or create it
@@ -197,7 +197,7 @@ type the command to your editor:''').strip()
 					else:
 						self.recipe = False
 					
-				elif( menu == 'delete recipe' and self.recipe):
+				elif( menu.lower() == 'delete recipe' and self.recipe):
 					if input('Do you realy want to erase this recipe (type y or yes):')\
 							not in ['y', 'yes']:
 						continue
@@ -216,7 +216,7 @@ type the command to your editor:''').strip()
 						print(e)
 						input('press enter to ignore this error and continue')
 					
-			elif (menu == 'desc'):
+			elif (menu.lower() == 'desc'):
 				self.editDescription()
 			else:
 				try:
@@ -734,7 +734,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 			elif(menu.lower() in ['m', 'main']):
 				return ( False, False, True )
 				
-			elif(menu in ['help', 'h']):
+			elif(menu.lower() in ['help', 'h']):
 				print('''Help:
 
 In menu:
@@ -766,7 +766,7 @@ m or main                Return to the main menu''')
 				else:
 					page = maxPage
 				
-			elif(menu in [ 'n', 'new' ] ):
+			elif(menu.lower() in [ 'n', 'new' ] ):
 				self.add()
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
@@ -844,7 +844,7 @@ m or main                Return to the main menu''')
 			elif(menu.lower() in ['m', 'main']):
 				return ( False, False, True )
 				
-			elif(menu in ['help', 'h']):
+			elif(menu.lower() in ['help', 'h']):
 				print('''Help:
 
 In menu:
@@ -876,7 +876,7 @@ m or main                Return to the main menu''')
 				else:
 					page = maxPage
 				
-			elif(menu in [ 'n', 'new' ] ):
+			elif(menu.lower() in [ 'n', 'new' ] ):
 				self.add(kind = 'extra')
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
@@ -953,7 +953,7 @@ m or main                Return to the main menu''')
 			elif(menu.lower() in ['m', 'main']):
 				return ( False, False, True )
 				
-			elif(menu in ['help', 'h']):
+			elif(menu.lower() in ['help', 'h']):
 				print('''Help:
 
 In menu:
@@ -986,9 +986,9 @@ m or main                Return to the main menu''')
 				else:
 					page = maxPage
 				
-			elif(menu in [ 'n', 'new' ] ):
+			elif(menu.lower() in [ 'n', 'new' ] ):
 				self.add(kind = 'accompaniment')
-			elif(menu == 'default' ):
+			elif(menu.lower() == 'default' ):
 				for acc in [ 
 							'Pasta',
 							'Rice',
@@ -1074,7 +1074,7 @@ m or main                Return to the main menu''')
 			elif(menu.lower() in ['m', 'main']):
 				return ( False, False, True )
 				
-			elif(menu in ['help', 'h']):
+			elif(menu.lower() in ['help', 'h']):
 				print('''Help:
 
 In menu:
@@ -1107,7 +1107,7 @@ m or main                Return to the main menu''')
 				else:
 					page = maxPage
 				
-			elif(menu in [ 'n', 'new' ] ):
+			elif(menu.lower() in [ 'n', 'new' ] ):
 				suggest = main.suggest( path[-1] )
 				
 				if suggest is not None and suggest is not True:
