@@ -318,9 +318,11 @@ type the command to your editor:''').strip()
 	def print (self, page=0, month = None):
 		'''print Element info as displayed in menu'''
 		print('			'+self.name+' menu')
-		
+		m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month-1]
 		
 		if self.name != 'Main':
+			print('Current working month: '+m+'.\n')
+			
 			# print description
 			if self.description == '':
 				print('No description. type "desc" to add one.\n')
@@ -333,6 +335,8 @@ type the command to your editor:''').strip()
 			# print coefficient
 			self.printCoef(month=month)
 			self.printCoef()
+		else:
+			print('Current working month: '+m+'.\n')
 		
 		if self.kind == 'variant':
 			# print ingredients
