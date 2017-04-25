@@ -74,7 +74,7 @@ class Element:
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			self.print(page)
+			self.print(page, main.month)
 			
 			menu = input('your move ? (h for help):').strip()
 			
@@ -315,12 +315,13 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def print (self, page=0):
+	def print (self, page=0, month = None):
 		'''print Element info as displayed in menu'''
 		print('			'+self.name+' menu')
 		
-		# print description
+		
 		if self.name != 'Main':
+			# print description
 			if self.description == '':
 				print('No description. type "desc" to add one.\n')
 			else:
@@ -328,6 +329,10 @@ type the command to your editor:''').strip()
 					print(self.description+'\n')
 				else:
 					print(self.description[0:500]+'…\n')
+			
+			# print coefficient
+			self.printCoef(month=month)
+			self.printCoef()
 		
 		if self.kind == 'variant':
 			# print ingredients

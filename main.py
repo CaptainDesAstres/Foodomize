@@ -2,6 +2,7 @@
 # -*-coding:Utf-8 -*
 '''App main scope'''
 from Element import Element
+from datetime import datetime
 import xml.etree.ElementTree as xmlMod
 import os
 
@@ -16,6 +17,8 @@ def main():
 			mainlist.load( xmlMod.fromstring( backup.read( ) ) )
 	else:
 		mainlist.editor = 'nano'
+	
+	mainlist.month = datetime.now().month
 	
 	mainlist.menu()
 	
