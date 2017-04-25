@@ -774,8 +774,9 @@ m or main                Return to the main menu''')
 							index.append( int( el ) )
 					
 				except Exception as e:
-					print('Error: «'+i+'» is not an integer')
+					print('Error: «'+el+'» is not an integer')
 					input('press enter to continue')
+					continue
 				
 				# erase index duplicate values
 				index = list( set( index ) )
@@ -844,6 +845,7 @@ Type:                    To:
 empty input              Same thing, back to first page when out of range
 n or new                 create an extra ingredient
 delete N                 delete the extra ingredient with index N
+d 0 1 2 3                delete each extra ingredient listed (0 1 2 and 3)
 
 h or help                Get some help
 q or quit                Quit the menu
@@ -870,27 +872,47 @@ m or main                Return to the main menu''')
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
-					i = menu[7:]
+					i = menu[7:].split(' ')
 				else:
-					i = menu[2:]
+					i = menu[2:].split(' ')
 				
-				# get ingredient index
+				# get extra ingredient index
 				try:
-					index = int(i)
+					index = []
+					for el in i:
+						if el != '':
+							index.append( int( el ) )
+					
 				except Exception as e:
-					print('Error: «'+i+'» is not an integer')
+					print('Error: «'+el+'» is not an integer')
 					input('press enter to continue')
+					continue
+				
+				# erase index duplicate values
+				index = list( set( index ) )
 				
 				# check index is in the range
-				if index >= len(self.extra) or index < 0:
-					input('No extra ingredient with index '+str(index)+'. press enter to continue.')
+				error = False
+				names = []
+				for i in index:
+					if i >= len(self.extra) or i < 0:
+						input('No extra ingredient with index '+str(i)+'. press enter to continue.')
+						error = True
+						break
+					else:
+						names.append(self.extra[i][0])
+				if error:
 					continue
+				names = ', '.join(names)
 				
 				# ask to confirm
-				if input('do you realy want to delete «'+self.extra[index][0]+'» extra ingredient?(press enter to confirm or type anything to cancel)') != '':
+				if input('do you realy want to delete «'+names+'» extra ingredient?(press enter to confirm or type anything to cancel)') != '':
 					continue
 				
-				self.extra.pop(index)
+				# erase each extra ingredient
+				index.sort(reverse=True)
+				for i in index:
+					self.extra.pop(i)
 	
 	
 	
