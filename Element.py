@@ -313,7 +313,10 @@ type the command to your editor:''').strip()
 	
 	def erase( self, path, main ):
 		'''do all there is to do before deleting the current element'''
-		path += '|'+self.name
+		if path == '':
+			path = self.name
+		else:
+			path += '|'+self.name
 		
 		# erase sub element
 		for el in self.sub:
