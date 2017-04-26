@@ -140,7 +140,7 @@ s or suggest             access suggested meal menu
 recipe                   read/edit dish recipe
 delete recipe            to delete recipe of this variant
 
-random function:
+random function: (don't work in variant)
 Those function randomly choose a sub element, using there coefficient for the current working month. It start from the current element.
 R or RANDOM              randomly choose one of the sub element
 r N or random N          randomly and recursivly choose an element, with N as level limit
@@ -186,7 +186,7 @@ type the command to your editor:''').strip()
 				self.add()
 				self.sub.sort( key = Element.getName )
 				
-			if self.kind == 'variant':
+			elif self.kind == 'variant':
 				if( menu.lower() in [ 'i', 'ingredient' ] ):
 					quit = self.manageIngredient()
 					
