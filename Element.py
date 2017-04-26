@@ -174,6 +174,9 @@ type the command to your editor:''').strip()
 				else:
 					input('«Main» menu can\'t be renamed. (Press enter to continue)')
 				
+			elif(menu.lower() in [ 'n', 'new' ] ):
+				self.add()
+				
 			if self.kind == 'variant':
 				if( menu.lower() in [ 'i', 'ingredient' ] ):
 					quit = self.manageIngredient()
