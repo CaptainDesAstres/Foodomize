@@ -325,7 +325,7 @@ type the command to your editor:''').strip()
 				except Exception as e:
 					continue
 				
-				if menu < len( self.sub ):
+				if menu < len( self.sub ) and menu > -1:
 					quit = self.sub[menu].menu( main, path, self )
 					self.sub.sort( key = Element.getName )
 			if(quit[0] is True):
