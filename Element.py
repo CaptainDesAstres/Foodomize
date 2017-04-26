@@ -386,7 +386,19 @@ type the command to your editor:''').strip()
 	
 	def randomMenu( self, limit, path, main ):
 		'''random menu to display info about randomly choosen element'''
-		input('We propose you «'+self.name+'». press enter to continue')
+		month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][main.month - 1]
+		
+		if path == '':
+			root = 'Main'
+		else:
+			root = path.split('|')[-1]
+		
+		print('			Randomly choose from «'+root+'» list:')
+		print('\nRamdomly choosen using '+month+' coefficients.\n')
+		
+		print('proposal :'+self.name)
+		next = input('what next? (type «help» for help)')
+		
 		return False
 	
 	
