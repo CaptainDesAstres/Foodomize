@@ -347,9 +347,22 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def random( self, depth, path, main ):
+	def random( self, limit, path, main ):
 		'''randomly sub element'''
+		# check if there is a limit
+		noLimit = ( limit == 0 )
 		
+		# random loop
+		again = True
+		while again:
+			level = self
+			i = 0
+			# random level loop
+			while( ( noLimit or i < limit ) and len(level.sub) > 0 ):
+				
+				i += 1
+			
+			again = level.randomMenu( limit, path, main )
 	
 	
 	
