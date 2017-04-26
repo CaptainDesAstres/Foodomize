@@ -368,6 +368,15 @@ type the command to your editor:''').strip()
 	
 	
 	
+	def randomMenu( self, limit, path, main ):
+		'''random menu to display info about randomly choosen element'''
+		input('We propose you «'+self.name+'». press enter to continue')
+		return False
+	
+	
+	
+	
+	
 	def erase( self, path, main ):
 		'''do all there is to do before deleting the current element'''
 		if path == '':
