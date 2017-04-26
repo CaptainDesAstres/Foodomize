@@ -242,6 +242,12 @@ type the command to your editor:''').strip()
 			elif (menu.lower() == 'desc'):
 				self.editDescription()
 				
+			elif menu.lower() in [ 'r', 'random' ]\
+					or menu.lower().startswith('r ')\
+					or menu.lower().startswith('random ') :
+				
+				
+				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
 					i = menu[7:].split(' ')
