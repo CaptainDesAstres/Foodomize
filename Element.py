@@ -248,9 +248,9 @@ type the command to your editor:''').strip()
 					or menu.lower().startswith('random ') :
 				# get depth
 				if menu in [ 'r', 'random' ]:
-					depth = 1
-				elif menu in [ 'R', 'RANDOM' ]:
 					depth = 0
+				elif menu in [ 'R', 'RANDOM' ]:
+					depth = 1
 				else:
 					if menu.lower().startswith('r '):
 						depth = menu[2:]
