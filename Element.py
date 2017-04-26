@@ -270,7 +270,7 @@ type the command to your editor:''').strip()
 						input('press enter to continue')
 						continue
 				
-				
+				self.random( depth, path, main )
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
@@ -342,6 +342,14 @@ type the command to your editor:''').strip()
 				return quit
 			elif(quit[2] is True and self.name != 'Main'):
 				return quit
+	
+	
+	
+	
+	
+	def random( self, depth, path, main ):
+		'''randomly sub element'''
+		
 	
 	
 	
