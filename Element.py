@@ -128,6 +128,8 @@ n or new                 in a group, create a group or a dish group
                          in a dish, create a variant
 name                     edit current element name
 c or coef                edit current element coefficients
+d N or delete N          Delete sub element with index N
+d 0 1 2 3                Delete each sub element listed (0 1 2 and 3)
 
 in a Variant of a dish:
 n or new                 Add an ingredient
@@ -233,6 +235,53 @@ type the command to your editor:''').strip()
 					
 			elif (menu.lower() == 'desc'):
 				self.editDescription()
+				
+			elif menu.startswith('delete ') or menu.startswith('d ') :
+				if menu.startswith('delete '):
+					i = menu[7:].split(' ')
+				else:
+					i = menu[2:].split(' ')
+				
+				# get sub element index
+				try:
+					index = []
+					for el in i:
+						if el != '':
+							index.append( int( el ) )
+					
+				except Exception as e:
+					print('Error: «'+el+'» is not an integer')
+					input('press enter to continue')
+					continue
+				
+				# erase index duplicate values
+				index = list( set( index ) )
+				
+				# check index is in the range
+				error = False
+				names = []
+				for i in index:
+					if i >= len(self.sub) or i < 0:
+						input('No sub element with index '+str(i)+'. press enter to continue.')
+						error = True
+						break
+					else:
+						names.append(self.sub[i].name)
+				if error:
+					continue
+				names = ', '.join(names)
+				
+				# ask to confirm
+				if input('Do you realy want to delete «'+names\
+						+'» element and their sub element?(type «y» or «yes» to confirm or anything else to cancel)'\
+						).lower() not in [ 'y', 'yes']:
+					continue
+				
+				# erase each accompaniments
+				index.sort(reverse=True)
+				for i in index:
+					self.sub.pop(i)
+				
 			else:
 				try:
 					menu = int(menu)
