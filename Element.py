@@ -140,6 +140,12 @@ s or suggest             access suggested meal menu
 recipe                   read/edit dish recipe
 delete recipe            to delete recipe of this variant
 
+random function:
+Those function randomly choose a sub element, using there coefficient for the current working month. It start from the current element.
+R or RANDOM              randomly choose one of the sub element
+r N or random N          randomly and recursivly choose an element, with N as level limit
+r or random              randomly and recursivly choose an element without level limit
+
 editor                   Change the default text editor (used to edit recipe)
 h or help                Get some help'''+quitHelp)
 				
