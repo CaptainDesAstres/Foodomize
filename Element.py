@@ -45,6 +45,12 @@ class Element:
 	
 	
 	
+	def getName(self):
+		'''return name (for sorting method)'''
+		return self.name
+	
+	
+	
 	
 	def menu(self, main = None, path = '', parent = None ):
 		'''Element/group menu'''
@@ -231,7 +237,7 @@ type the command to your editor:''').strip()
 				
 				if menu < len( self.sub ):
 					quit = self.sub[menu].menu( main, path, self )
-					
+					self.sub.sort( key = Element.getName )
 			if(quit[0] is True):
 				if self.name != 'Main':
 					return quit
