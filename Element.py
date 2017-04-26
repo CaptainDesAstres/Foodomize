@@ -4,6 +4,7 @@
 import os, re, subprocess, shutil
 from math import ceil
 from XML import XML
+from random import randint
 
 class Element:
 	'''Element base object'''
@@ -351,6 +352,7 @@ type the command to your editor:''').strip()
 		'''randomly sub element'''
 		# check if there is a limit
 		noLimit = ( limit == 0 )
+		month = main.month - 1
 		
 		# random loop
 		again = True
@@ -359,6 +361,20 @@ type the command to your editor:''').strip()
 			i = 0
 			# random level loop
 			while( ( noLimit or i < limit ) and len(level.sub) > 0 ):
+				# get coefficient sum
+				coefSum = 0
+				for el in level.sub:
+					coefSum += el.coef[ month ]
+				
+				# get random value
+				r = randint( 1, coefSum )
+				
+				# get the selected sub element
+				for el in level.sub:
+					coefSum -= el.coef[ month ]
+					if coefSum <= 0:
+						level = el
+						break
 				
 				i += 1
 			
