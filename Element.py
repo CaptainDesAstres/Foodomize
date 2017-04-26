@@ -317,7 +317,7 @@ type the command to your editor:''').strip()
 		
 		# erase sub element
 		for el in self.sub:
-			el.erase(main)
+			el.erase( path, main )
 		
 		# erase reference from related element
 		for rel in self.related:
@@ -1309,7 +1309,7 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu.lower() in [ 'n', 'new' ] ):
-				suggest = main.suggest( path[-1] )
+				suggest = main.suggest( path[-1], main )
 				
 				if suggest is not None and suggest is not True:
 					if( path != suggest and path not in self.related):
@@ -1407,7 +1407,7 @@ June     => '''+str( self.coef[5] )+'''                December  => '''+str( sel
 	
 	
 	
-	def suggest(self, meal ):
+	def suggest(self, meal, main ):
 		'''a method to suggest a meal to relate to another meal'''
 		page = 0
 		
@@ -1420,7 +1420,7 @@ June     => '''+str( self.coef[5] )+'''                December  => '''+str( sel
 			if (page > maxPage):
 				page = max ( 0, maxPage )
 			
-			self.print(page)
+			self.print(page, main.month)
 			
 			if self.kind == 'variant':
 				choice = input('Valid current choice (press enter)? (h for help):').strip()
@@ -1476,7 +1476,7 @@ h or help                Get some help''')
 					continue
 				
 				if choice < len( self.sub ):
-					out = self.sub[choice].suggest( meal )
+					out = self.sub[choice].suggest( meal, main )
 					if out is None:
 						continue
 					elif out is True:
