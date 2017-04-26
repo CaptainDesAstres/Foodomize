@@ -327,8 +327,20 @@ type the command to your editor:''').strip()
 			rel = rel.split('|')
 			main.getPath(rel).related.remove( path )
 		
-		# delet recipe file
-		
+		# delete recipe file
+		if self.recipe:
+			try:
+				# get recipes directory path
+				recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
+				
+				# delete element recipe
+				if os.path.exists(recipePath):
+					os.remove(recipePath)
+			except Exception as e:
+				print('error while trying to erase «'+path.split('|')[-1]+'» recipe:')
+				print(e)
+				input('press enter to ignore this error and continue')
+			
 	
 	
 	
