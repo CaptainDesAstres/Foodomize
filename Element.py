@@ -408,7 +408,7 @@ type the command to your editor:''').strip()
 				return False
 				
 			elif next in [ 'i', 'info' ]:
-				loop = self.randomInfoMenu( main )
+				loop = self.randomInfoMenu( root, main )
 				if loop:
 					return True
 				
@@ -428,10 +428,33 @@ press enter to continue''')
 	
 	
 	
-	def randomInfoMenu( self, main ):
+	def randomInfoMenu( self, root, main ):
 		'''random detailed menu'''
-		input(self.name+' info menu')
-		return False
+		while True:
+			os.system('clear')
+			
+			print('			«'+self.name+'» Info  Menu :')
+			
+			next = input('what next? (type «help» for help)').strip().lower()
+			if next == '':
+				return True
+				
+			elif next in [ 'q', 'quit' ]:
+				return False
+				
+			elif next in [ 'h', 'help' ]:
+				input('''Random Menu Help:
+You're in the random menu, where you can randomly choose element.
+
+press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
+Type:                    To:
+recipe                   read this element recipe, if there is one
+r or random              ramdomly choose one of the meal related to this element
+
+q or quit                return to simplify menu
+h or help                read this help
+
+press enter to continue''')
 	
 	
 	
