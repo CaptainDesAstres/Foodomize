@@ -393,13 +393,30 @@ type the command to your editor:''').strip()
 		else:
 			root = path.split('|')[-1]
 		
-		print('			Randomly choose from «'+root+'» list:')
-		print('\nRamdomly choosen using '+month+' coefficients.\n')
-		
-		print('proposal :'+self.name)
-		next = input('what next? (type «help» for help)')
-		
-		return False
+		while True:
+			os.system('clear')
+			
+			print('			Randomly choose from «'+root+'» list:')
+			print('\nRamdomly choosen using '+month+' coefficients.\n')
+			print('proposal :'+self.name)
+			
+			next = input('what next? (type «help» for help)').strip().lower()
+			if next == '':
+				return True
+				
+			elif next in [ 'q', 'quit' ]:
+				return False
+				
+			elif next in [ 'h', 'help' ]:
+				input('''Random Menu Help:
+You're in the random menu, where you can randomly choose element.
+
+press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
+Type:                    To:
+q or quit                quit the menu
+h or help                read this help
+
+press enter to continue''')
 	
 	
 	
