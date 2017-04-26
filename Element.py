@@ -276,7 +276,7 @@ type the command to your editor:''').strip()
 				else:
 					root = path.split('|')[-1]
 				
-				self.random( depth, root, main )
+				self.random( path, depth, root, main )
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
@@ -353,7 +353,7 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def random( self, limit, root, main ):
+	def random( self, rootPath, limit, root, main ):
 		'''randomly sub element'''
 		# check if there is a limit
 		noLimit = ( limit == 0 )
@@ -364,7 +364,7 @@ type the command to your editor:''').strip()
 		while again:
 			level = self
 			i = 0
-			path = ''
+			path = rootPath
 			
 			# random level loop
 			while( ( noLimit or i < limit ) and len(level.sub) > 0 ):
