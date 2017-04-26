@@ -451,13 +451,25 @@ press enter to continue''')
 			elif next in [ 'q', 'quit' ]:
 				return False
 				
+			elif next == 'recipe' :
+				recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
+				
+				if self.recipe and os.path.exists(recipePath):
+					try:
+						subprocess.call([main.editor, recipePath])
+					except Exception as e:
+						print(e)
+						input('press enter to ignore this error and continue')
+				else:
+					input('this element have no recipe')
+				
 			elif next in [ 'h', 'help' ]:
 				input('''Random Menu Help:
 You're in the random menu, where you can randomly choose element.
 
 press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
 Type:                    To:
-recipe                   read this element recipe, if there is one
+recipe                   read/edit this element recipe, if there is one
 
 If the element have sub element, you can use random function on it:
 R or RANDOM              randomly choose one of the sub element
