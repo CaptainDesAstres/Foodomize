@@ -280,7 +280,7 @@ type the command to your editor:''').strip()
 				# erase each accompaniments
 				index.sort(reverse=True)
 				for i in index:
-					self.sub[i].erase(main)
+					self.sub[i].erase( path, main )
 					self.sub.pop(i)
 				
 			else:
@@ -311,11 +311,18 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def erase( self, main ):
+	def erase( self, path, main ):
 		'''do all there is to do before deleting the current element'''
+		path += '|'+self.name
+		
 		# erase sub element
+		for el in self.sub:
+			el.erase(main)
 		
 		# erase reference from related element
+		for rel in self.related:
+			rel = rel.split('|')
+			main.getPath(rel).related.remove( path )
 		
 		# delet recipe file
 		
