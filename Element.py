@@ -176,6 +176,7 @@ type the command to your editor:''').strip()
 				
 			elif(menu.lower() in [ 'n', 'new' ] ):
 				self.add()
+				self.sub.sort( key = Element.getName )
 				
 			if self.kind == 'variant':
 				if( menu.lower() in [ 'i', 'ingredient' ] ):
