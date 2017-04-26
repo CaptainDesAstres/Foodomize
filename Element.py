@@ -449,7 +449,14 @@ You're in the random menu, where you can randomly choose element.
 press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
 Type:                    To:
 recipe                   read this element recipe, if there is one
-r or random              ramdomly choose one of the meal related to this element
+
+If the element have sub element, you can use random function on it:
+R or RANDOM              randomly choose one of the sub element
+r N or random N          randomly and recursivly choose an element, with N as level limit
+r or random              randomly and recursivly choose an element without level limit
+
+If the element have related element, you can use random chose one:
+related                  ramdomly choose one of the related meal
 
 q or quit                return to simplify menu
 h or help                read this help
