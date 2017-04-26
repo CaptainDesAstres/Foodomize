@@ -280,6 +280,7 @@ type the command to your editor:''').strip()
 				# erase each accompaniments
 				index.sort(reverse=True)
 				for i in index:
+					self.sub[i].erase(main)
 					self.sub.pop(i)
 				
 			else:
@@ -305,6 +306,20 @@ type the command to your editor:''').strip()
 				return quit
 			elif(quit[2] is True and self.name != 'Main'):
 				return quit
+	
+	
+	
+	
+	
+	def erase( self, main ):
+		'''do all there is to do before deleting the current element'''
+		# erase sub element
+		
+		# erase reference from related element
+		
+		# delet recipe file
+		
+	
 	
 	
 	
