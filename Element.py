@@ -245,6 +245,30 @@ type the command to your editor:''').strip()
 			elif menu.lower() in [ 'r', 'random' ]\
 					or menu.lower().startswith('r ')\
 					or menu.lower().startswith('random ') :
+				# get depth
+				if menu in [ 'r', 'random' ]:
+					depth = 1
+				elif menu in [ 'R', 'RANDOM' ]:
+					depth = 0
+				else:
+					if menu.lower().startswith('r '):
+						depth = menu[2:]
+					else:
+						depth = menu[7:]
+					
+					# try to convert to int
+					try:
+						depth = int( depth )
+					except Exception as e:
+						print('Error: «'+depth+'» can\'t be convert into an integer')
+						input('press enter to continue')
+						continue
+					
+					# check the value is valid
+					if depth <= 0:
+						print('Error: you must specify a positive integer.')
+						input('press enter to continue')
+						continue
 				
 				
 				
