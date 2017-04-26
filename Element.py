@@ -271,7 +271,12 @@ type the command to your editor:''').strip()
 						input('press enter to continue')
 						continue
 				
-				self.random( depth, path, main )
+				if path == '':
+					root = 'Main'
+				else:
+					root = path.split('|')[-1]
+				
+				self.random( depth, root, main )
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
@@ -348,7 +353,7 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def random( self, limit, path, main ):
+	def random( self, limit, root, main ):
 		'''randomly sub element'''
 		# check if there is a limit
 		noLimit = ( limit == 0 )
@@ -378,20 +383,15 @@ type the command to your editor:''').strip()
 				
 				i += 1
 			
-			again = level.randomMenu( limit, path, main )
+			again = level.randomMenu( limit, root, main )
 	
 	
 	
 	
 	
-	def randomMenu( self, limit, path, main ):
+	def randomMenu( self, limit, root, main ):
 		'''random menu to display info about randomly choosen element'''
 		month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][main.month - 1]
-		
-		if path == '':
-			root = 'Main'
-		else:
-			root = path.split('|')[-1]
 		
 		while True:
 			os.system('clear')
