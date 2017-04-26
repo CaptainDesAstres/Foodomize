@@ -364,6 +364,8 @@ type the command to your editor:''').strip()
 		while again:
 			level = self
 			i = 0
+			path = ''
+			
 			# random level loop
 			while( ( noLimit or i < limit ) and len(level.sub) > 0 ):
 				# get coefficient sum
@@ -379,17 +381,24 @@ type the command to your editor:''').strip()
 					coefSum -= el.coef[ month ]
 					if coefSum <= 0:
 						level = el
+						
+						# compile the path
+						if path == '':
+							path += el.name
+						else:
+							path += '|'+el.name
+						
 						break
 				
 				i += 1
 			
-			again = level.randomMenu( limit, root, main )
+			again = level.randomMenu( path, limit, root, main )
 	
 	
 	
 	
 	
-	def randomMenu( self, limit, root, main ):
+	def randomMenu( self, path, limit, root, main ):
 		'''random menu to display info about randomly choosen element'''
 		month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][main.month - 1]
 		
@@ -408,7 +417,7 @@ type the command to your editor:''').strip()
 				return False
 				
 			elif next in [ 'i', 'info' ]:
-				loop = self.randomInfoMenu( root, main )
+				loop = self.randomInfoMenu( path, root, main )
 				if loop:
 					return True
 				
@@ -428,7 +437,7 @@ press enter to continue''')
 	
 	
 	
-	def randomInfoMenu( self, root, main ):
+	def randomInfoMenu( self, path, root, main ):
 		'''random detailed menu'''
 		while True:
 			os.system('clear')
