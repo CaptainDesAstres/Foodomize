@@ -407,16 +407,31 @@ type the command to your editor:''').strip()
 			elif next in [ 'q', 'quit' ]:
 				return False
 				
+			elif next in [ 'i', 'info' ]:
+				loop = self.randomInfoMenu( main )
+				if loop:
+					return True
+				
 			elif next in [ 'h', 'help' ]:
 				input('''Random Menu Help:
 You're in the random menu, where you can randomly choose element.
 
 press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
 Type:                    To:
+i or info                get more info about this element
 q or quit                quit the menu
 h or help                read this help
 
 press enter to continue''')
+	
+	
+	
+	
+	
+	def randomInfoMenu( self, main ):
+		'''random detailed menu'''
+		input(self.name+' info menu')
+		return False
 	
 	
 	
