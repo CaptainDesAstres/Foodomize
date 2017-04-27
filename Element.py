@@ -1049,6 +1049,10 @@ This maner, it simple to made an element more likely to show up on some time of 
 			print('Add a new accompaniment to \''+self.name+'\' variant :')
 			
 			
+		elif kind == 'ingredient':
+			print('Add a new ingredient to \''+self.name+'\' :')
+			nameList = self.ingredients
+			
 		elif self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
 			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
@@ -1068,10 +1072,6 @@ This maner, it simple to made an element more likely to show up on some time of 
 			print('Add a new variant to \''+self.name+'\' dish :')
 			kind = 'variant'
 			
-		elif self.kind == 'variant':
-			print('Add a new ingredient to \''+self.name+'\' variant :')
-			kind = 'ingredient'
-			nameList = self.ingredients
 		
 		
 		# get a name:
@@ -1242,7 +1242,7 @@ m or main                Return to the main menu''')
 					page = maxPage
 				
 			elif(menu.lower() in [ 'n', 'new' ] ):
-				self.add()
+				self.add(kind='ingredient')
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
