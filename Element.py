@@ -133,7 +133,7 @@ d N or delete N          Delete sub element with index N
 d 0 1 2 3                Delete each sub element listed (0 1 2 and 3)
 
 in a dish or variant:
-n or new                 Add an ingredient
+n or new                 Add an ingredient (in variant only)
 i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
 a or accompaniment       access accompaniments menu
@@ -812,7 +812,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 		if self.kind in ['variant', 'dish']:
 			# print ingredients
 			if( len(self.ingredients) == 0 ):
-				print('Ingredients: No ingredient. Type «n» or «new» to add one.')
+				print('Ingredients: No ingredient. Type «i» or «ingredient» to access ingredient menu.')
 			else:
 				ingredients = ''
 				for ing in self.ingredients:
@@ -839,7 +839,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 				
 				print('Extra ingredients: '+ingredients)
 			else:
-				print('Extra ingredients: No one know. Type «e» or «extra» to add one.')
+				print('Extra ingredients: No one know. Type «e» or «extra» to access extra ingredient menu.')
 			
 			
 			# print accompaniments
