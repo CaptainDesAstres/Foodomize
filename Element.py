@@ -187,59 +187,6 @@ type the command to your editor:''').strip()
 				self.add()
 				self.sub.sort( key = Element.getName )
 				
-			elif self.kind == 'variant':
-				if( menu.lower() in [ 'i', 'ingredient' ] ):
-					quit = self.manageIngredient()
-					
-				elif( menu.lower() in [ 'e', 'extra' ] ):
-					quit = self.manageExtra()
-					
-				elif( menu.lower() in [ 'a', 'accompaniment' ] ):
-					quit = self.manageAccompaniment()
-					
-				elif( menu.lower() in [ 's', 'suggest' ] ):
-					quit = self.manageRelatedMeal( main, path )
-					
-				elif( menu.lower() == 'recipe'):
-					# run editor to see and modify recipe
-					try:
-						# get recipes directory path or create it
-						recipePath = os.path.realpath(__file__+'/../recipes')
-						if not os.path.exists(recipePath):
-							os.mkdir(recipePath)
-						
-						recipePath += '/'+path
-						
-						subprocess.call([main.editor, recipePath])
-					except Exception as e:
-						print(e)
-						input('press enter to ignore this error and continue')
-					
-					#check there is a saved file for the recipe
-					if os.path.exists(recipePath):
-						self.recipe = True
-					else:
-						self.recipe = False
-					
-				elif( menu.lower() == 'delete recipe' and self.recipe):
-					if input('Do you realy want to erase this recipe (type y or yes):')\
-							not in ['y', 'yes']:
-						continue
-					
-					try:
-						# get recipes directory path
-						recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
-						
-						# delete element recipe
-						if os.path.exists(recipePath):
-							os.remove(recipePath)
-						
-						self.recipe = False
-						
-					except Exception as e:
-						print(e)
-						input('press enter to ignore this error and continue')
-					
 			elif (menu.lower() == 'desc'):
 				self.editDescription()
 				
@@ -325,6 +272,59 @@ type the command to your editor:''').strip()
 					self.sub[i].erase( path, main )
 					self.sub.pop(i)
 				
+			elif self.kind == 'variant':
+				if( menu.lower() in [ 'i', 'ingredient' ] ):
+					quit = self.manageIngredient()
+					
+				elif( menu.lower() in [ 'e', 'extra' ] ):
+					quit = self.manageExtra()
+					
+				elif( menu.lower() in [ 'a', 'accompaniment' ] ):
+					quit = self.manageAccompaniment()
+					
+				elif( menu.lower() in [ 's', 'suggest' ] ):
+					quit = self.manageRelatedMeal( main, path )
+					
+				elif( menu.lower() == 'recipe'):
+					# run editor to see and modify recipe
+					try:
+						# get recipes directory path or create it
+						recipePath = os.path.realpath(__file__+'/../recipes')
+						if not os.path.exists(recipePath):
+							os.mkdir(recipePath)
+						
+						recipePath += '/'+path
+						
+						subprocess.call([main.editor, recipePath])
+					except Exception as e:
+						print(e)
+						input('press enter to ignore this error and continue')
+					
+					#check there is a saved file for the recipe
+					if os.path.exists(recipePath):
+						self.recipe = True
+					else:
+						self.recipe = False
+					
+				elif( menu.lower() == 'delete recipe' and self.recipe):
+					if input('Do you realy want to erase this recipe (type y or yes):')\
+							not in ['y', 'yes']:
+						continue
+					
+					try:
+						# get recipes directory path
+						recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
+						
+						# delete element recipe
+						if os.path.exists(recipePath):
+							os.remove(recipePath)
+						
+						self.recipe = False
+						
+					except Exception as e:
+						print(e)
+						input('press enter to ignore this error and continue')
+					
 			else:
 				try:
 					menu = int(menu)
