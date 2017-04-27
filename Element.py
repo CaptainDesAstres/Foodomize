@@ -466,6 +466,20 @@ type the command to your editor:''').strip()
 			shortRelated = related
 		
 		
+		# get sub element list
+		sub = ''
+		if len(self.sub)>0:
+			for el in self.sub:
+				sub += el.name+', '
+				
+			
+			sub = sub[ 0 : -2 ]
+		if len(sub) > 500:
+			shortSub = sub[0:499]+'…'
+		else:
+			shortSub = sub
+		
+		
 		while True:
 			os.system('clear')
 			
@@ -502,10 +516,14 @@ type the command to your editor:''').strip()
 				
 				# display related list
 				if shortRelated == '':
-					print('Related meal: no one know')
+					print('Related meal: no one know.\n')
 				else:
-					print('Related meal: '+shortRelated)
+					print('Related meal: '+shortRelated+'\n')
 			
+			if shortSub == '':
+				print('Sub elements: none')
+			else:
+				print('Sub elements: '+shortSub)
 			
 			next = input('\nwhat next? (type «help» for help)').strip().lower()
 			if next == '':
