@@ -450,6 +450,9 @@ You're in the random menu, where you can randomly choose element.
 press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
 Type:                    To:
 recipe                   read/edit this element recipe, if there is one
+d or desc                read the complete description (if truncated)
+i or ingredient          read the complete ingredients list (if truncated)
+
 
 If the element have sub element, you can use random function on it:
 R or RANDOM              randomly choose one of the sub element
@@ -476,6 +479,35 @@ press enter to continue''')
 				else:
 					input('this element have no recipe')
 				
+			elif next in [ 'd', 'desc']:
+				os.system('clear')
+				print('			«'+self.name+'» description:\n')
+				
+				if self.description =='':
+					print('There is no description for «'+self.name+'»…')
+				else:
+					print(self.description)
+				
+				input('press enter to continue')
+			elif next in [ 'i', 'ingredient', 'ing', 'ingredients' ]:
+				os.system('clear')
+				print('			«'+self.name+'» ingredients:\n')
+				
+				ingredients = ''
+				if len(self.ingredients)>0:
+					for ing in self.ingredients:
+						if ing[1]=='':
+							ingredients += ing[0]+', '
+						else:
+							ingredients += ing[0]+' ('+ing[1]+'), '
+					ingredients = ingredients[ 0 : -2 ]
+				
+				if ingredients == '':
+					print('There is no know ingredient for «'+self.name+'»…')
+				else:
+					print('Ingredients: '+ingredients)
+				
+				input('press enter to continue')
 	
 	
 	
