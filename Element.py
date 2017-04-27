@@ -838,6 +838,8 @@ This maner, it simple to made an element more likely to show up on some time of 
 					ingredients = ingredients[0:-2]
 				
 				print('Extra ingredients: '+ingredients)
+			else:
+				print('Extra ingredients: No one know. Type «e» or «extra» to add one.')
 			
 			
 			# print accompaniments
