@@ -526,13 +526,13 @@ type the command to your editor:''').strip()
 				print('Sub elements: '+shortSub)
 			
 			next = input('\nwhat next? (type «help» for help)').strip()
-			upper = next[0].isupper()
-			next = next.lower()
-			
 			if next == '':
 				return True
-				
-			elif next in [ 'q', 'quit' ]:
+			else:
+				upper = next[0].isupper()
+			next = next.lower()
+			
+			if next in [ 'q', 'quit' ]:
 				return False
 				
 			elif next in [ 'h', 'help' ]:
