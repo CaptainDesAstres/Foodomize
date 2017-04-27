@@ -656,13 +656,7 @@ press enter to continue''')
 				loopMsg = '\nPress enter for a new proposal or type anything to stop:'
 				
 				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
-					while again:
-						if len(self.related)>0:
-							rel = self.related[ randint( 0, len(self.related)-1) ]
-							again = input('Foodomize propose you «'+rel+'» as related meal.'+loopMsg).strip() == ''
-						else:
-							input('Foodomize can\'t propose you any related meal: this meal have none.')
-							again = False
+					self.randomRelated()
 					
 				elif(next in [ 'a', 'acc', 'accompaniment', 'accompaniments' ] ):
 					while again:
@@ -710,6 +704,22 @@ press enter to continue''')
 							continue
 					
 					self.random( path, limit, main )
+	
+	
+	
+	
+	
+	def randomRelated(self):
+		'''randomly propose a meal from this one'''
+		again = True
+		while again:
+			if len(self.related)>0:
+				rel = self.related[ randint( 0, len(self.related)-1) ]
+				again = input('Foodomize propose you «'+rel+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
+			else:
+				input('Foodomize can\'t propose you any related meal: this meal have none.')
+				again = False
+		
 	
 	
 	
