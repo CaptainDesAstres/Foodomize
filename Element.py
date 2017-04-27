@@ -407,7 +407,16 @@ type the command to your editor:''').strip()
 			
 			print('			Randomly choose from «'+root+'» list:')
 			print('\nRamdomly choosen using '+month+' coefficients.\n')
-			print('proposal :'+self.name)
+			print('Foodomize propose you «'+self.name+'»:')
+			
+			if self.description =='':
+				print('No description avaible.')
+			else:
+				description = self.description
+				if len(description) > 500:
+					description = description[0:499]+'…'
+				print(description)
+			
 			
 			next = input('what next? (type «help» for help)').strip().lower()
 			if next == '':
