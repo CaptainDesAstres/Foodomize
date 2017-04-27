@@ -648,7 +648,11 @@ press enter to continue''')
 					next = next[7:]
 				
 				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
-					input('try to randomely choose a related meal.')
+					if len(self.related)>0:
+						rel = self.related[ randint( 0, len(self.related)-1) ]
+						input('Foodomize propose you «'+rel+'» as related meal.')
+					else:
+						input('Foodomize can\'t propose you any related meal: this meal have none.')
 				elif(next in [ 'a', 'acc', 'accompaniment' ] ):
 					input('try to randomely choose an accompaniment.')
 				elif(next in [ 'e', 'extra' ] ):
