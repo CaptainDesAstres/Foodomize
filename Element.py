@@ -525,7 +525,10 @@ type the command to your editor:''').strip()
 			else:
 				print('Sub elements: '+shortSub)
 			
-			next = input('\nwhat next? (type «help» for help)').strip().lower()
+			next = input('\nwhat next? (type «help» for help)').strip()
+			upper = next[0].isupper()
+			next = next.lower()
+			
 			if next == '':
 				return True
 				
@@ -638,6 +641,20 @@ press enter to continue''')
 				
 				input('press enter to continue')
 				
+			elif( next.startswith('r ') or next.startswith('random ') ):
+				if next.startswith('r '):
+					next = next[2:]
+				else:
+					next = next[7:]
+				
+				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
+					input('try to randomely choose a related meal.')
+				elif(next in [ 'a', 'acc', 'accompaniment' ] ):
+					input('try to randomely choose an accompaniment.')
+				elif(next in [ 'e', 'extra' ] ):
+					input('try to randomely choose an extra ingredient.')
+				else:
+					input('try to randomely choose a sub element.')
 	
 	
 	
