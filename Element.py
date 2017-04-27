@@ -132,7 +132,7 @@ c or coef                edit current element coefficients
 d N or delete N          Delete sub element with index N
 d 0 1 2 3                Delete each sub element listed (0 1 2 and 3)
 
-in a Variant of a dish:
+in a dish or variant:
 n or new                 Add an ingredient
 i or ingredient          access ingredients menu
 e or extra               access extra ingredients menu
@@ -272,20 +272,24 @@ type the command to your editor:''').strip()
 					self.sub[i].erase( path, main )
 					self.sub.pop(i)
 				
-			elif self.kind == 'variant':
-				if( menu.lower() in [ 'i', 'ingredient' ] ):
+			elif self.kind in ['variant', 'dish'] \
+						and menu.lower() in [ 'i', 'ingredient', 'e', 'extra', 
+									'a', 'accompaniment', 's', 'suggest', 'recipe',
+									'delete recipe'] :
+				menu = menu.lower()
+				if( menu in [ 'i', 'ingredient' ] ):
 					quit = self.manageIngredient()
 					
-				elif( menu.lower() in [ 'e', 'extra' ] ):
+				elif( menu in [ 'e', 'extra' ] ):
 					quit = self.manageExtra()
 					
-				elif( menu.lower() in [ 'a', 'accompaniment' ] ):
+				elif( menu in [ 'a', 'accompaniment' ] ):
 					quit = self.manageAccompaniment()
 					
-				elif( menu.lower() in [ 's', 'suggest' ] ):
+				elif( menu in [ 's', 'suggest' ] ):
 					quit = self.manageRelatedMeal( main, path )
 					
-				elif( menu.lower() == 'recipe'):
+				elif( menu == 'recipe'):
 					# run editor to see and modify recipe
 					try:
 						# get recipes directory path or create it
@@ -306,7 +310,7 @@ type the command to your editor:''').strip()
 					else:
 						self.recipe = False
 					
-				elif( menu.lower() == 'delete recipe' and self.recipe):
+				elif( menu == 'delete recipe' and self.recipe):
 					if input('Do you realy want to erase this recipe (type y or yes):')\
 							not in ['y', 'yes']:
 						continue
