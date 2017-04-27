@@ -476,8 +476,9 @@ You're in the random menu, where you can randomly choose element.
 press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
 Type:                    To:
 recipe                   read/edit this element recipe, if there is one
-d or desc                read the complete description (if truncated)
-i or ingredient          read the complete ingredients list (if truncated)
+d or desc                read the full description (if truncated)
+i or ingredient          read the full ingredients list (if truncated)
+e or extra               read the full extra ingredients list (if truncated)
 
 
 If the element have sub element, you can use random function on it:
@@ -523,6 +524,17 @@ press enter to continue''')
 					print('There is no know ingredient for «'+self.name+'»…')
 				else:
 					print('Ingredients: '+ingredients)
+				
+				input('press enter to continue')
+				
+			elif next in [ 'e', 'extra' ]:
+				os.system('clear')
+				print('			«'+self.name+'» extra ingredients:\n')
+				
+				if extra == '':
+					print('There is no know ingredient for «'+self.name+'»…')
+				else:
+					print('Extra ingredients: '+extra)
 				
 				input('press enter to continue')
 	
