@@ -382,8 +382,8 @@ type the command to your editor:''').strip()
 				
 				# get the selected sub element
 				for el in level.sub:
-					coefSum -= el.coef[ month ]
-					if coefSum <= 0:
+					r -= el.coef[ month ]
+					if r <= 0:
 						level = el
 						
 						# compile the path
