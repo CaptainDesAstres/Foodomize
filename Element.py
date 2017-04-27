@@ -525,6 +525,7 @@ d or desc                see the full description (if truncated)
 i or ingredient          see the full ingredients list (if truncated)
 e or extra               see the full extra ingredients list (if truncated)
 a or accompaniment       see the full accompaniment list (if truncated)
+related                  see related error
 
 
 If the element have sub element, you can use random function on it:
@@ -532,8 +533,10 @@ R or RANDOM              randomly choose one of the sub element
 r N or random N          randomly and recursivly choose an element, with N as level limit
 r or random              randomly and recursivly choose an element without level limit
 
-If the element have related element, you can use random chose one:
-related                  ramdomly choose one of the related meal
+
+random related           ramdomly choose one of the related meal
+random acc               ramdomly choose one of the accompaniment
+random extra             ramdomly choose one of the extra ingredient
 
 q or quit                quit random menu
 h or help                read this help
