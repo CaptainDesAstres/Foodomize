@@ -417,6 +417,7 @@ type the command to your editor:''').strip()
 					description = description[0:499]+'…'
 				print(description)
 			
+			# get ingredients list
 			ingredients = ''
 			if len(self.ingredients)>0:
 				for ing in self.ingredients:
@@ -429,11 +430,31 @@ type the command to your editor:''').strip()
 				if len(ingredients) > 500:
 					ingredients = ingredients[0:499]+'…'
 			
+			# display ingrédient list
 			if ingredients == '':
 				print('Ingredients: Unknow')
 			else:
 				print('Ingredients: '+ingredients)
 			
+			
+			# get extra ingredients list
+			extra = ''
+			if len(self.extra)>0:
+				for ing in self.extra:
+					if ing[1]=='':
+						extra += ing[0]+', '
+					else:
+						extra += ing[0]+' ('+ing[1]+'), '
+				
+				extra = extra[ 0 : -2 ]
+				if len(extra) > 500:
+					extra = extra[0:499]+'…'
+			
+			# display ingrédient list
+			if extra == '':
+				print('Extra ingredients: no one know')
+			else:
+				print('Extra ingredients: '+extra)
 			
 			
 			next = input('what next? (type «help» for help)').strip().lower()
