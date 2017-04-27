@@ -525,7 +525,7 @@ d or desc                see the full description (if truncated)
 i or ingredient          see the full ingredients list (if truncated)
 e or extra               see the full extra ingredients list (if truncated)
 a or accompaniment       see the full accompaniment list (if truncated)
-related                  see related error
+rel or related           see the full related meal list (if truncated)
 
 
 If the element have sub element, you can use random function on it:
@@ -597,6 +597,18 @@ press enter to continue''')
 					print('Accompaniments: '+accompaniments)
 				
 				input('press enter to continue')
+				
+			elif next in [ 'rel', 'related' ]:
+				os.system('clear')
+				print('			«'+self.name+'» related meal:\n')
+				
+				if related == '':
+					print('There is no know related meal for «'+self.name+'»…')
+				else:
+					print('Related meals: '+related)
+				
+				input('press enter to continue')
+				
 	
 	
 	
