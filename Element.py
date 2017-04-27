@@ -417,6 +417,24 @@ type the command to your editor:''').strip()
 					description = description[0:499]+'…'
 				print(description)
 			
+			ingredients = ''
+			if len(self.ingredients)>0:
+				for ing in self.ingredients:
+					if ing[1]=='':
+						ingredients += ing[0]+', '
+					else:
+						ingredients += ing[0]+' ('+ing[1]+'), '
+				
+				ingredients = ingredients[ 0 : -2 ]
+				if len(ingredients) > 500:
+					ingredients = ingredients[0:499]+'…'
+			
+			if ingredients == '':
+				print('Ingredients: Unknow')
+			else:
+				print('Ingredients: '+ingredients)
+			
+			
 			
 			next = input('what next? (type «help» for help)').strip().lower()
 			if next == '':
