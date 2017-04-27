@@ -397,13 +397,13 @@ type the command to your editor:''').strip()
 				
 				i += 1
 			
-			again = level.randomMenu( path, limit, root, main )
+			again = level.randomMenu( path, root, main )
 	
 	
 	
 	
 	
-	def randomMenu( self, path, limit, root, main ):
+	def randomMenu( self, path, root, main ):
 		'''random menu to display info about randomly choosen element'''
 		month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][main.month - 1]
 		
