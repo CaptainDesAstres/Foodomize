@@ -616,7 +616,7 @@ press enter to continue''')
 				
 				input('press enter to continue')
 				
-			elif next in [ 'rel', 'related' ]:
+			elif next in [ 'rel', 'related', 's', 'suggest' ]:
 				os.system('clear')
 				print('			«'+self.name+'» related meal:\n')
 				
