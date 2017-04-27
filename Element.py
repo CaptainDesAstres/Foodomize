@@ -647,12 +647,13 @@ press enter to continue''')
 				else:
 					next = next[7:]
 				again = True
+				loopMsg = '\nPress enter for a new proposal or type anything to stop:'
 				
 				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
 					while again:
 						if len(self.related)>0:
 							rel = self.related[ randint( 0, len(self.related)-1) ]
-							again = input('Foodomize propose you «'+rel+'» as related meal.').strip() == ''
+							again = input('Foodomize propose you «'+rel+'» as related meal.'+loopMsg).strip() == ''
 						else:
 							input('Foodomize can\'t propose you any related meal: this meal have none.')
 							again = False
@@ -662,7 +663,7 @@ press enter to continue''')
 						if len(self.accompaniments)>0:
 							acc = self.accompaniments[ 
 									randint( 0, len(self.accompaniments)-1) ]
-							again = input('Foodomize propose you «'+acc+'» as accompaniment for this meal.').strip() == ''
+							again = input('Foodomize propose you «'+acc+'» as accompaniment for this meal.'+loopMsg).strip() == ''
 						else:
 							input('Foodomize can\'t propose you any accompaniment: this meal have none.')
 							again = False
@@ -673,9 +674,9 @@ press enter to continue''')
 							e = self.extra[ 
 									randint( 0, len(self.extra)-1) ]
 							if e[1] == '':
-								again = input('Foodomize propose you to add «'+e[0]+'» to this meal.').strip() == ''
+								again = input('Foodomize propose you to add «'+e[0]+'» to this meal.'+loopMsg).strip() == ''
 							else:
-								again = input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.').strip() == ''
+								again = input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.'+loopMsg).strip() == ''
 						else:
 							input('Foodomize can\'t propose you add any ingredient: this meal have none extra ingredient.')
 							again = False
