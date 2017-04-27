@@ -416,53 +416,6 @@ type the command to your editor:''').strip()
 			elif next in [ 'q', 'quit' ]:
 				return False
 				
-			elif next in [ 'i', 'info' ]:
-				loop = self.randomInfoMenu( path, root, main )
-				if loop:
-					return True
-				
-			elif next in [ 'h', 'help' ]:
-				input('''Random Menu Help:
-You're in the random menu, where you can randomly choose element.
-
-press enter without typing anything to randomly choose another element from «'''+root+'''» list or :
-Type:                    To:
-i or info                get more info about this element
-q or quit                quit the menu
-h or help                read this help
-
-press enter to continue''')
-	
-	
-	
-	
-	
-	def randomInfoMenu( self, path, root, main ):
-		'''random detailed menu'''
-		while True:
-			os.system('clear')
-			
-			print('			«'+self.name+'» Info  Menu :')
-			
-			next = input('what next? (type «help» for help)').strip().lower()
-			if next == '':
-				return True
-				
-			elif next in [ 'q', 'quit' ]:
-				return False
-				
-			elif next == 'recipe' :
-				recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
-				
-				if self.recipe and os.path.exists(recipePath):
-					try:
-						subprocess.call([main.editor, recipePath])
-					except Exception as e:
-						print(e)
-						input('press enter to ignore this error and continue')
-				else:
-					input('this element have no recipe')
-				
 			elif next in [ 'h', 'help' ]:
 				input('''Random Menu Help:
 You're in the random menu, where you can randomly choose element.
@@ -479,10 +432,23 @@ r or random              randomly and recursivly choose an element without level
 If the element have related element, you can use random chose one:
 related                  ramdomly choose one of the related meal
 
-q or quit                return to simplify menu
+q or quit                quit random menu
 h or help                read this help
 
 press enter to continue''')
+				
+			elif next == 'recipe' :
+				recipePath = os.path.realpath(__file__+'/../recipes')+'/'+path
+				
+				if self.recipe and os.path.exists(recipePath):
+					try:
+						subprocess.call([main.editor, recipePath])
+					except Exception as e:
+						print(e)
+						input('press enter to ignore this error and continue')
+				else:
+					input('this element have no recipe')
+				
 	
 	
 	
