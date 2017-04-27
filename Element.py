@@ -162,7 +162,7 @@ type the command to your editor:''').strip()
 				if page > 0:
 					page -= 1
 			elif (menu in [ '', '+', '>' ] ):
-				maxPage = ceil(len(self.sub) / 15)
+				maxPage = ceil(len(self.sub) / 15)-1
 				
 				if(page < maxPage):
 					page += 1
