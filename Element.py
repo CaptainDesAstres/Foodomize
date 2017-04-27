@@ -725,8 +725,14 @@ press enter to continue''')
 		
 		again = True
 		while again:
-			rel = self.related[ randint( 0, len(self.related)-1) ]
-			again = input('Foodomize propose you «'+rel+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
+			r = randint( 1, coefSum )
+			
+			for rel in related:
+				r -= rel.coef[month]
+				if r <= 0:
+					break
+			
+			again = input('Foodomize propose you «'+rel.name+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
 			
 		
 	
