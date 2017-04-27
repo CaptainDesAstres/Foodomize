@@ -792,7 +792,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 		m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month-1]
 		
 		if self.name != 'Main':
-			print('Current working month: '+m+'.')
+			print('Current working month: '+m+'.\n')
 			
 			# print coefficient
 			self.printCoef(month=month)
@@ -809,7 +809,7 @@ This maner, it simple to made an element more likely to show up on some time of 
 		else:
 			print('Current working month: '+m+'.\n')
 		
-		if self.kind == 'variant':
+		if self.kind in ['variant', 'dish']:
 			# print ingredients
 			if( len(self.ingredients) == 0 ):
 				print('Ingredients: No ingredient. Type «n» or «new» to add one.')
@@ -860,11 +860,15 @@ This maner, it simple to made an element more likely to show up on some time of 
 			print('type «s» to see suggested meal with this one')
 			
 			if(self.recipe):
-				print('type «recipe» to see this meal recipe in your editor.')
+				print('type «recipe» to see this meal recipe in your editor.\n')
 			else:
-				print('actually no recipe for this meal. type «recipe» to write one in your prefered editor')
-		else:
-			self.printList( page )
+				print('actually no recipe for this meal. type «recipe» to write one in your prefered editor\n')
+		
+		if (self.kind != 'variant'):
+			if self.kind != 'dish':
+				self.printList( page )
+			else:
+				self.printList( page, title=' variant' )
 	
 	
 	
@@ -1781,7 +1785,8 @@ h or help                Get some help''')
 		''' print part of the sub element list'''
 		if li == None:
 			li = self.sub
-			title = ''
+			if self.kind != 'dish':
+				title = ''
 		else:
 			title = ' '+title
 		
