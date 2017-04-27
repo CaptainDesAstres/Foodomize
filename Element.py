@@ -193,6 +193,10 @@ type the command to your editor:''').strip()
 			elif menu.lower() in [ 'r', 'random' ]\
 					or menu.lower().startswith('r ')\
 					or menu.lower().startswith('random ') :
+				if len(self.sub)==0:
+					input('Foodomize can\'t propose you any sub element from «'+self.name+'»: there is none.')
+					continue
+				
 				# get depth
 				if menu in [ 'r', 'random' ]:
 					depth = 0
@@ -680,10 +684,14 @@ press enter to continue''')
 							else:
 								again = input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.'+loopMsg).strip() == ''
 						else:
-							input('Foodomize can\'t propose you add any ingredient: this meal have none extra ingredient.')
+							input('Foodomize can\'t propose you to add any ingredient: this meal have none extra ingredient.')
 							again = False
 					
 				else:
+					if len(self.sub)==0:
+						input('Foodomize can\'t propose you any sub element from «'+self.name+'»: there is none.')
+						continue
+					
 					# get random depth
 					if next == '':
 						if upper:
