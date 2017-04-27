@@ -218,12 +218,8 @@ type the command to your editor:''').strip()
 						input('press enter to continue')
 						continue
 				
-				if path == '':
-					root = 'Main'
-				else:
-					root = path.split('|')[-1]
 				
-				self.random( path, depth, root, main )
+				self.random( path, depth, main )
 				
 			elif menu.startswith('delete ') or menu.startswith('d ') :
 				if menu.startswith('delete '):
@@ -357,11 +353,12 @@ type the command to your editor:''').strip()
 	
 	
 	
-	def random( self, rootPath, limit, root, main ):
+	def random( self, rootPath, limit, main ):
 		'''randomly sub element'''
 		# check if there is a limit
 		noLimit = ( limit == 0 )
 		month = main.month - 1
+		root = self.name
 		
 		# random loop
 		again = True
