@@ -719,7 +719,7 @@ press enter to continue''')
 		month = main.month - 1
 		related = []
 		coefSum = 0
-		for path in self.related
+		for path in self.related:
 			related.append( main.getPath(path.split('|')) )
 			coefSum += related[-1].coef[month]
 		
