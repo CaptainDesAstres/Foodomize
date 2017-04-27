@@ -638,11 +638,16 @@ press enter to continue''')
 				
 				input('press enter to continue')
 				
-			elif( next.startswith('r ') or next.startswith('random ') ):
+			elif( next.startswith('r') ):
 				if next.startswith('r '):
 					next = next[2:]
-				else:
+				elif next.startswith('random '):
 					next = next[7:]
+				elif next in [ 'r', 'random' ]:
+					next = ''
+				else:
+					continue
+				
 				again = True
 				loopMsg = '\nPress enter for a new proposal or type anything to stop:'
 				
@@ -665,7 +670,7 @@ press enter to continue''')
 							input('Foodomize can\'t propose you any accompaniment: this meal have none.')
 							again = False
 					
-				elif(next in [ 'e', '' ] ):
+				elif(next in [ 'e', 'extra' ] ):
 					while again:
 						if len(self.extra)>0:
 							e = self.extra[ 
@@ -679,7 +684,24 @@ press enter to continue''')
 							again = False
 					
 				else:
-					input('try to randomely choose a sub element.')
+					# get random depth
+					if next == '':
+						if upper:
+							limit = 1
+						else:
+							limit = 0
+					else:
+						try:
+							limit = int( next.strip() )
+						except Exception as e:
+							input('Error: «'+next+'» can\'t be convert into integer.\nPress enter to continue')
+							continue
+						
+						if limit < 0:
+							input('Error: you must specify a positive integer for random.\nPress enter to continue')
+							continue
+					
+					self.random( path, limit, main )
 	
 	
 	
