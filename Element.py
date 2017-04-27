@@ -455,33 +455,34 @@ type the command to your editor:''').strip()
 			print('Foodomize propose you «'+self.name+'»:')
 			
 			if self.description =='':
-				print('No description avaible.')
+				print('No description avaible.\n')
 			else:
 				description = self.description
 				if len(description) > 500:
 					description = description[0:499]+'…'
-				print(description)
+				print(description+'\n')
 			
-			# display ingrédient list
-			if shortIngredients == '':
-				print('Ingredients: Unknow')
-			else:
-				print('Ingredients: '+shortIngredients)
+			if(self.kind in [ 'dish', 'variant' ]):
+				# display ingrédient list
+				if shortIngredients == '':
+					print('Ingredients: Unknow')
+				else:
+					print('Ingredients: '+shortIngredients)
+				
+				# display ingrédient list
+				if shortExtra == '':
+					print('Extra ingredients: no one know')
+				else:
+					print('Extra ingredients: '+shortExtra)
+				
+				# display accompaniments list
+				if shortAccompaniments == '':
+					print('Recommended accompaniments: no one know')
+				else:
+					print('Recommended accompaniments: '+shortAccompaniments)
 			
-			# display ingrédient list
-			if shortExtra == '':
-				print('Extra ingredients: no one know')
-			else:
-				print('Extra ingredients: '+shortExtra)
 			
-			# display accompaniments list
-			if shortAccompaniments == '':
-				print('Recommended accompaniments: no one know')
-			else:
-				print('Recommended accompaniments: '+shortAccompaniments)
-			
-			
-			next = input('what next? (type «help» for help)').strip().lower()
+			next = input('\nwhat next? (type «help» for help)').strip().lower()
 			if next == '':
 				return True
 				
