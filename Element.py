@@ -502,9 +502,9 @@ type the command to your editor:''').strip()
 				
 				# display related list
 				if shortRelated == '':
-					print('Recommended accompaniments: no one know')
+					print('Related meal: no one know')
 				else:
-					print('Recommended accompaniments: '+shortRelated)
+					print('Related meal: '+shortRelated)
 			
 			
 			next = input('\nwhat next? (type «help» for help)').strip().lower()
