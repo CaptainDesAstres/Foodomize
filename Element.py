@@ -417,10 +417,10 @@ type the command to your editor:''').strip()
 					ingredients += ing[0]+' ('+ing[1]+'), '
 			
 			ingredients = ingredients[ 0 : -2 ]
-			if len(ingredients) > 500:
-				shortIngredients = ingredients[0:499]+'…'
-			else:
-				shortIngredients = ingredients
+		if len(ingredients) > 500:
+			shortIngredients = ingredients[0:499]+'…'
+		else:
+			shortIngredients = ingredients
 		
 		# get extra ingredients list
 		extra = ''
@@ -432,10 +432,10 @@ type the command to your editor:''').strip()
 					extra += ing[0]+' ('+ing[1]+'), '
 			
 			extra = extra[ 0 : -2 ]
-			if len(extra) > 500:
-				shortExtra = extra[0:499]+'…'
-			else:
-				shortExtra = extra
+		if len(extra) > 500:
+			shortExtra = extra[0:499]+'…'
+		else:
+			shortExtra = extra
 		
 		
 		# get accompaniments list
@@ -446,10 +446,10 @@ type the command to your editor:''').strip()
 				
 			
 			accompaniments = accompaniments[ 0 : -2 ]
-			if len(accompaniments) > 500:
-				shortAccompaniments = accompaniments[0:499]+'…'
-			else:
-				shortAccompaniments = accompaniments
+		if len(accompaniments) > 500:
+			shortAccompaniments = accompaniments[0:499]+'…'
+		else:
+			shortAccompaniments = accompaniments
 		
 		
 		# get related meal list
@@ -460,10 +460,11 @@ type the command to your editor:''').strip()
 				
 			
 			related = related[ 0 : -2 ]
-			if len(related) > 500:
-				shortRelated = related[0:499]+'…'
-			else:
-				shortRelated = related
+		if len(related) > 500:
+			shortRelated = related[0:499]+'…'
+		else:
+			shortRelated = related
+		
 		
 		while True:
 			os.system('clear')
