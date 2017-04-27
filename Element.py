@@ -627,6 +627,17 @@ press enter to continue''')
 				
 				input('press enter to continue')
 				
+			elif next == 'sub':
+				os.system('clear')
+				print('			«'+self.name+'» sub elements:\n')
+				
+				if sub == '':
+					print('There is no know sub element in «'+self.name+'»…')
+				else:
+					print('sub elements: '+sub)
+				
+				input('press enter to continue')
+				
 	
 	
 	
