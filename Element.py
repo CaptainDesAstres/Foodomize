@@ -662,8 +662,17 @@ press enter to continue''')
 					else:
 						input('Foodomize can\'t propose you any accompaniment: this meal have none.')
 					
-				elif(next in [ 'e', 'extra' ] ):
-					input('try to randomely choose an extra ingredient.')
+				elif(next in [ 'e', '' ] ):
+					if len(self.extra)>0:
+						e = self.extra[ 
+								randint( 0, len(self.extra)-1) ]
+						if e[1] == '':
+							input('Foodomize propose you to add «'+e[0]+'» to this meal.')
+						else:
+							input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.')
+					else:
+						input('Foodomize can\'t propose you add any ingredient: this meal have none extra ingredient.')
+					
 				else:
 					input('try to randomely choose a sub element.')
 	
