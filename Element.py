@@ -646,32 +646,39 @@ press enter to continue''')
 					next = next[2:]
 				else:
 					next = next[7:]
+				again = True
 				
 				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
-					if len(self.related)>0:
-						rel = self.related[ randint( 0, len(self.related)-1) ]
-						input('Foodomize propose you «'+rel+'» as related meal.')
-					else:
-						input('Foodomize can\'t propose you any related meal: this meal have none.')
+					while again:
+						if len(self.related)>0:
+							rel = self.related[ randint( 0, len(self.related)-1) ]
+							again = input('Foodomize propose you «'+rel+'» as related meal.').strip() == ''
+						else:
+							input('Foodomize can\'t propose you any related meal: this meal have none.')
+							again = False
 					
 				elif(next in [ 'a', 'acc', 'accompaniment', 'accompaniments' ] ):
-					if len(self.accompaniments)>0:
-						acc = self.accompaniments[ 
-								randint( 0, len(self.accompaniments)-1) ]
-						input('Foodomize propose you «'+acc+'» as accompaniment for this meal.')
-					else:
-						input('Foodomize can\'t propose you any accompaniment: this meal have none.')
+					while again:
+						if len(self.accompaniments)>0:
+							acc = self.accompaniments[ 
+									randint( 0, len(self.accompaniments)-1) ]
+							again = input('Foodomize propose you «'+acc+'» as accompaniment for this meal.').strip() == ''
+						else:
+							input('Foodomize can\'t propose you any accompaniment: this meal have none.')
+							again = False
 					
 				elif(next in [ 'e', '' ] ):
-					if len(self.extra)>0:
-						e = self.extra[ 
-								randint( 0, len(self.extra)-1) ]
-						if e[1] == '':
-							input('Foodomize propose you to add «'+e[0]+'» to this meal.')
+					while again:
+						if len(self.extra)>0:
+							e = self.extra[ 
+									randint( 0, len(self.extra)-1) ]
+							if e[1] == '':
+								again = input('Foodomize propose you to add «'+e[0]+'» to this meal.').strip() == ''
+							else:
+								again = input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.').strip() == ''
 						else:
-							input('Foodomize propose you to add «'+e[0]+'»('+e[1]+') to this meal.')
-					else:
-						input('Foodomize can\'t propose you add any ingredient: this meal have none extra ingredient.')
+							input('Foodomize can\'t propose you add any ingredient: this meal have none extra ingredient.')
+							again = False
 					
 				else:
 					input('try to randomely choose a sub element.')
