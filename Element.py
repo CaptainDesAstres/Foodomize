@@ -732,7 +732,7 @@ press enter to continue''')
 				if r <= 0:
 					break
 			
-			again = input('Foodomize propose you «'+rel[1].name+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
+			again = rel[1].randomMenu( rel[0], self.name, main )
 			
 		
 	
