@@ -653,8 +653,15 @@ press enter to continue''')
 						input('Foodomize propose you «'+rel+'» as related meal.')
 					else:
 						input('Foodomize can\'t propose you any related meal: this meal have none.')
-				elif(next in [ 'a', 'acc', 'accompaniment' ] ):
-					input('try to randomely choose an accompaniment.')
+					
+				elif(next in [ 'a', 'acc', 'accompaniment', 'accompaniments' ] ):
+					if len(self.accompaniments)>0:
+						acc = self.accompaniments[ 
+								randint( 0, len(self.accompaniments)-1) ]
+						input('Foodomize propose you «'+acc+'» as accompaniment for this meal.')
+					else:
+						input('Foodomize can\'t propose you any accompaniment: this meal have none.')
+					
 				elif(next in [ 'e', 'extra' ] ):
 					input('try to randomely choose an extra ingredient.')
 				else:
