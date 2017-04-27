@@ -451,6 +451,20 @@ type the command to your editor:''').strip()
 			else:
 				shortAccompaniments = accompaniments
 		
+		
+		# get related meal list
+		related = ''
+		if len(self.related)>0:
+			for rel in self.related:
+				related += rel.split('|')[-1]+', '
+				
+			
+			related = related[ 0 : -2 ]
+			if len(related) > 500:
+				shortRelated = related[0:499]+'…'
+			else:
+				shortRelated = related
+		
 		while True:
 			os.system('clear')
 			
@@ -484,6 +498,12 @@ type the command to your editor:''').strip()
 					print('Recommended accompaniments: no one know')
 				else:
 					print('Recommended accompaniments: '+shortAccompaniments)
+				
+				# display related list
+				if shortRelated == '':
+					print('Recommended accompaniments: no one know')
+				else:
+					print('Recommended accompaniments: '+shortRelated)
 			
 			
 			next = input('\nwhat next? (type «help» for help)').strip().lower()
