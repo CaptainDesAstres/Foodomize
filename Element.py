@@ -1231,18 +1231,14 @@ This maner, it simple to made an element more likely to show up on some time of 
 			
 		elif self.kind == 'group':
 			print('Add a new group to \''+self.name+'\' group list:')
-			kind = input('type \'d\' or \'dishes\' to add a dishes group or anything else to create a standart group').strip().lower() in ['d', 'dishes']
+			kind = input('type \'d\' or \'dish\' to add a dish or anything else to create a sub group of dishes').strip().lower() in ['d', 'dish']
 			
 			if kind:
-				kind = 'dishes'
-				print('Add a dishes group:')
+				kind = 'dish'
+				print('Add a dish:')
 			else:
 				kind = 'group'
-				print('Add a sub group:')
-			
-		elif self.kind == 'dishes':
-			print('Add a new dish to \''+self.name+'\' dishes group :')
-			kind = 'dish'
+				print('Add a sub dishes group:')
 			
 		elif self.kind == 'dish':
 			print('Add a new variant to \''+self.name+'\' dish :')
@@ -1874,8 +1870,8 @@ June     => '''+str( self.coef[5] )+'''                December  => '''+str( sel
 			
 			if self.kind == 'variant':
 				choice = input('Valid current choice (press enter)? (h for help):').strip()
-			elif self.kind in ['dish', 'dishes']:
-				choice = input('Valid this choice (ok) or specify your choice: (h for help):').strip()
+			elif self.kind  == 'dish':
+				choice = input('Valid this choice (ok) or specify a variant choice: (h for help):').strip()
 			else:
 				choice = input('your choice ? (h for help):').strip()
 			
@@ -1905,7 +1901,7 @@ h or help                Get some help''')
 			elif (choice == '' and self.kind == 'variant'):
 				return self.name
 			elif (choice.lower() == 'ok' 
-						and self.kind in ['dishes', 'dish', 'variant'] ):
+						and self.kind in ['dish', 'variant'] ):
 				return self.name
 			elif ( choice in [ '-', '<' ] ):
 				if page > 0:
