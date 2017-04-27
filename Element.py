@@ -434,6 +434,19 @@ type the command to your editor:''').strip()
 				shortExtra = extra
 		
 		
+		# get accompaniments list
+		accompaniments = ''
+		if len(self.accompaniments)>0:
+			for acc in self.accompaniments:
+				accompaniments += acc+', '
+				
+			
+			accompaniments = accompaniments[ 0 : -2 ]
+			if len(accompaniments) > 500:
+				shortAccompaniments = accompaniments[0:499]+'…'
+			else:
+				shortAccompaniments = accompaniments
+		
 		while True:
 			os.system('clear')
 			
@@ -460,6 +473,12 @@ type the command to your editor:''').strip()
 				print('Extra ingredients: no one know')
 			else:
 				print('Extra ingredients: '+shortExtra)
+			
+			# display accompaniments list
+			if shortAccompaniments == '':
+				print('Recommended accompaniments: no one know')
+			else:
+				print('Recommended accompaniments: '+shortAccompaniments)
 			
 			
 			next = input('what next? (type «help» for help)').strip().lower()
