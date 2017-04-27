@@ -656,7 +656,7 @@ press enter to continue''')
 				loopMsg = '\nPress enter for a new proposal or type anything to stop:'
 				
 				if(next in [ 'r', 'rel', 'related', 's', 'suggest' ] ):
-					self.randomRelated()
+					self.randomRelated( main )
 					
 				elif(next in [ 'a', 'acc', 'accompaniment', 'accompaniments' ] ):
 					if len(self.accompaniments)==0:
@@ -709,11 +709,19 @@ press enter to continue''')
 	
 	
 	
-	def randomRelated(self):
+	def randomRelated(self, main):
 		'''randomly propose a meal from this one'''
 		if len(self.related)==0:
 				input('Foodomize can\'t propose you any related meal: this meal have none.')
 				return
+		
+		# get related list
+		month = main.month - 1
+		related = []
+		coefSum = 0
+		for path in self.related
+			related.append( main.getPath(path.split('|')) )
+			coefSum += related[-1].coef[month]
 		
 		again = True
 		while again:
