@@ -720,19 +720,19 @@ press enter to continue''')
 		related = []
 		coefSum = 0
 		for path in self.related:
-			related.append( main.getPath(path.split('|')) )
-			coefSum += related[-1].coef[month]
+			related.append( [path, main.getPath(path.split('|'))] )
+			coefSum += related[-1][1].coef[month]
 		
 		again = True
 		while again:
 			r = randint( 1, coefSum )
 			
 			for rel in related:
-				r -= rel.coef[month]
+				r -= rel[1].coef[month]
 				if r <= 0:
 					break
 			
-			again = input('Foodomize propose you «'+rel.name+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
+			again = input('Foodomize propose you «'+rel[1].name+'» as related meal.\nPress enter for a new proposal or type anything to stop:').strip() == ''
 			
 		
 	
