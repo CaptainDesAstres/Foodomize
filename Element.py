@@ -1983,8 +1983,8 @@ h or help                Get some help''')
 				line = li[i].name
 				
 				# limit name size
-				if len(line) > 29:
-					line = line[0:29] + '…'
+				if len(line) > 100:
+					line = line[0:99] + '…'
 				
 			elif(type (li[i]) is tuple):
 				if li[i][1] == '':
@@ -1996,8 +1996,8 @@ h or help                Get some help''')
 				line = li[i]
 				
 				# limit name size
-				if len(line) > 29:
-					line = line[0:29] + '…'
+				if len(line) > 100:
+					line = line[0:99] + '…'
 					
 			
 			# print name
@@ -2028,8 +2028,8 @@ h or help                Get some help''')
 		while(i < end):
 			line = self.related[i].split('|')[-1]
 			
-			if len(line) > 29:
-				line = line[0:29] + '…'
+			if len(line) > 100:
+				line = line[0:99] + '…'
 			
 			
 			# print name
