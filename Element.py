@@ -1251,8 +1251,8 @@ This maner, it simple to made an element more likely to show up on some time of 
 			name = input('choose a name:').strip().lower().title()
 			if name == '':
 				return
-			elif '|' in name:
-				print('Please, do not use «|» in the name.')
+			elif '|' in name or '/' in name:
+				print('Please, do not use «|» nor «/» in the name.')
 			elif name == 'Main':
 				print('«Main» is a reserved name. choose anything else!')
 			elif (kind == 'accompaniment' and name not in self.accompaniments
